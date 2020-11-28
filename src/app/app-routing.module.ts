@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {APP_ROUTE_TYPE_TITLE, AppRouteType} from './app-route-type.js';
 import {WelcomeInfoComponent} from './welcome-info/welcome-info.component';
+import {AuthorisationGuard} from './guards/authorisation-guard.service';
 
 export const APP_ROUTE_PREFIX = 'app';
 const DEFAULT_ROUTE = `${APP_ROUTE_PREFIX}/`;
