@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
 import { LifeClockComponent } from './life-clock/life-clock.component';
+import { GoalsBoxComponent } from './goals-box/goals-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeInfoComponent,
-    LifeClockComponent
+    LifeClockComponent,
+    GoalsBoxComponent
   ],
   imports: [
     BrowserModule,
