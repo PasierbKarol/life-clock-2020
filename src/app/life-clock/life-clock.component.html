@@ -1,170 +1,106 @@
-<div id="wrapper" class="ui-widget-content">
-  <main id="mainMain">
-    <div id="mainContent">
-      <div id="goalsBtnDiv">
-        <input id="goalsFixedButton" type="button" name="goalsFixedButton" value="_" />
-        <p>Up To Your Goals</p>
-      </div>
+<div id="mainContent">
+  <div id="tdForTextArea">
+    <textarea id="lifeList" required placeholder="Please enter your life goals here."></textarea>
+    <input id="listCompleteButton" type="button" name="listComplete" value="Submit List"/>
 
-      <!--HERE IS THE TABLE!!!!!-->
-      <table id="lifeGoalsTable">
-        <tr>
-          <th></th>
-          <th></th>
-        </tr>
-        <!-- first row for 2 blocks titles -->
-        <tr>
-          <td><h4 id="lifeListTitle" >Life time Goals</h4></td>
-          <td><h4 id="5yearsTitle" class="titles">Goals in next 5 years</h4>
+    <p class="description">All your goals are now included in the list below.
+      You can use the mouse to drag every one of them and move around.
+      However, they can be dropped only into the boxes like the one on the right. <br/>
+    </p>
+  </div>
 
-          </td>
-        </tr>
-        <!-- first row for 2 blocks divs -->
-        <tr>
-          <td id="tdForTextArea">
-            <textarea id="lifeList" required placeholder="Please enter your life goals here." ></textarea>
+  <div id="lifeGoalsTable"></div>
 
 
-            <p class="description">All your goals are now included in the list below.
-              You can use the mouse to drag every one of them and move around.
-              However, they can be dropped only into the boxes like the one on the right. <br />
-            </p>
+  <div id="lifeGoals" class="goalsBlocks">
+  </div>
 
-            <div id="lifeGoals" class="goalsBlocks">
+  <div>
+    <p class="description">Now you can see your goals in 2 lists above.
+      This new box below is the list for next 2 years. <br/>
+      What would you like to do in that time? What would be even more important than the goals in the previous
+      lists?
+      <br/>
+      Please drag here those goals which are important in next 2 years.</p>
 
-            </div>
-          </td>
-          <td>
+    <div id="2yearsGoals" class="goalsBlocks">
 
-
-
-          </td>
-        </tr>
-        <!-- first row for 2 blocks buttons -->
-        <tr >
-          <td>
-            <input id="listCompleteButton" type="button" name="listComplete" value="Submit List" />
-
-          </td>
-          <td>
-
-          </td>
-        </tr>
-        <!-- FIRST ROW FINISHED -->
-
-
-        <!-- second row for 2 blocks titles -->
-        <tr>
-          <td><h4 id="2yearsTitle" class="titles">Goals in next 2 years</h4>
-          </td>
-          <td><h4 id="1yearTitle" class="titles">Goals in next year</h4></td>
-        </tr>
-        <!-- second row for 2 divs titles -->
-        <tr>
-          <td>
-            <p class="description">Now you can see your goals in 2 lists above.
-              This new box below is the list for next 2 years. <br />
-              What would you like to do in that time? What would be even more important than the goals in the previous lists?
-              <br />
-              Please drag here those goals which are important in next 2 years.</p>
-
-            <div id="2yearsGoals" class="goalsBlocks">
-
-            </div>
-            <input id="2yearsCompleteButton" type="button" name="2yearsComplete" value="Submit Choice" class="buttons"/>
-
-          </td>
-          <td>
-            <p class="description">Box below is the list for next year.<br />
-              Have you ever gave enough thought to what you want to do next year?
-              What would so important and crucial to do first? What would make you happy to accomplish and achieve? Drag those goals here. </p>
-            <div id="1yearGoals" class="goalsBlocks">
-            </div>
-            <input id="1yearCompleteButton" type="button" name="1yearComplete" value="Submit Choice" class="buttons"/>
-
-          </td>
-        </tr>
-        <!-- second row for 2 buttons titles -->
-        <!-- SECOND ROW FINISHED -->
-
-
-
-
-
-
-
-        <!-- third row for 2 blocks titles -->
-        <tr>
-          <td><h4 id="6monthsTitle" class="titles">Goals in next 6 months</h4></td>
-          <td><h4 id="3monthsTitle" class="titles">Goals in next 3 month</h4></td>
-        </tr>
-        <!-- third row for 2 divs titles -->
-        <tr>
-          <td>
-            <p class="description">Now you have 4 lists segregated by the importance.
-              <br />
-              This box is the list for next 6 months.
-              <br />
-              You know the drill, but do you really know what matters to you most in next 6 months? Think of it as everything else doesn't matter.
-            </p>
-
-            <div id="6monthsGoals" class="goalsBlocks"    >
-
-            </div>
-            <input id="6monthsCompleteButton" type="button" name="6monthsComplete" value="Submit Choice" class="buttons"/>
-
-          </td>
-          <td>
-            <p class="description">
-              This is the last box. Most important things you ever thought of.
-              <br />
-              Imagine as this could be the only last 3 months you have to live. Like Greg.
-              What would you prefer to do to make your life happy and never regret you haven't done something you dreamed of?
-              Now you have a chance to realize it and just do it!
-            </p>
-
-            <div id="3monthsGoals" class="goalsBlocks"    >
-
-            </div>
-            <input id="3monthsCompleteButton" type="button" name="3monthsComplete" value="Submit Choice" class="buttons"/>
-
-          </td>
-        </tr>
-        <!-- third row for 2 buttons titles -->
-
-
-
-        <!-- Last row for the final instructions and the confirmation-->
-
-        <tr>
-          <td colspan="2">
-            <p id="finalDescription" class="description goals" >You are at the final step. <br/>
-              You have written your goals and organized them depending on their priority.
-              Now you can take a look once more, go through all of them again to assure yourself this is the correct order of your dreams.
-              <br/>
-              You may still make some changes and drag goals between any of those boxes. Remeber, this is all for you to help you make best choices.
-              To prioritize your dreams that way, so you would never regret you did something easy and simple rather than something great you always wanted to do.<br/>
-              And once you prioritize your dreams then simply DO THEM. And check this great video:
-              <a target="_blank" href="https://www.youtube.com/watch?v=M9-IZ1pNk00" >DO IT!!!</a>.
-              <br/>
-              Below is the submit button. At the moment it allows you to send the results to your email.
-              When you'll press it your list will be saved.</p>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            <form action="../results/results.php" method="post">
-              <input id="testResults" type="hidden" name="testResults" value="" />
-              <input id="goalsCompleteButton" type="submit" name="goalsComplete" value="Submit Your Goals" class="buttons" />
-            </form>
-          </td>
-
-        </tr>
-
-      </table>
     </div>
+    <input id="2yearsCompleteButton" type="button" name="2yearsComplete" value="Submit Choice" class="buttons"/>
 
-  </main>
+  </div>
+
+  <div>
+    <p class="description">Box below is the list for next year.<br/>
+      Have you ever gave enough thought to what you want to do next year?
+      What would so important and crucial to do first? What would make you happy to accomplish and achieve? Drag
+      those goals here. </p>
+    <div id="1yearGoals" class="goalsBlocks">
+    </div>
+    <input id="1yearCompleteButton" type="button" name="1yearComplete" value="Submit Choice" class="buttons"/>
+
+  </div>
+
+  <div>
+    <p class="description">Now you have 4 lists segregated by the importance.
+      <br/>
+      This box is the list for next 6 months.
+      <br/>
+      You know the drill, but do you really know what matters to you most in next 6 months? Think of it as
+      everything else doesn't matter.
+    </p>
+
+    <div id="6monthsGoals" class="goalsBlocks">
+
+    </div>
+    <input id="6monthsCompleteButton" type="button" name="6monthsComplete" value="Submit Choice" class="buttons"/>
+
+  </div>
+  <div>
+    <p class="description">
+      This is the last box. Most important things you ever thought of.
+      <br/>
+      Imagine as this could be the only last 3 months you have to live. Like Greg.
+      What would you prefer to do to make your life happy and never regret you haven't done something you dreamed
+      of?
+      Now you have a chance to realize it and just do it!
+    </p>
+
+    <div id="3monthsGoals" class="goalsBlocks">
+
+    </div>
+    <input id="3monthsCompleteButton" type="button" name="3monthsComplete" value="Submit Choice" class="buttons"/>
+
+  </div>
+
+  <div>
+    <p id="finalDescription" class="description goals">You are at the final step. <br/>
+      You have written your goals and organized them depending on their priority.
+      Now you can take a look once more, go through all of them again to assure yourself this is the correct order
+      of your dreams.
+      <br/>
+      You may still make some changes and drag goals between any of those boxes. Remeber, this is all for you to
+      help you make best choices.
+      To prioritize your dreams that way, so you would never regret you did something easy and simple rather than
+      something great you always wanted to do.<br/>
+      And once you prioritize your dreams then simply DO THEM. And check this great video:
+      <a target="_blank" href="https://www.youtube.com/watch?v=M9-IZ1pNk00">DO IT!!!</a>.
+      <br/>
+      Below is the submit button. At the moment it allows you to send the results to your email.
+      When you'll press it your list will be saved.</p>
+  </div>
+
+  <div>
+    <form action="../results/results.php" method="post">
+      <input id="testResults" type="hidden" name="testResults" value=""/>
+      <input id="goalsCompleteButton" type="submit" name="goalsComplete" value="Submit Your Goals" class="buttons"/>
+    </form>
+  </div>
+
+
+  <div id="goalsBtnDiv">
+    <input id="goalsFixedButton" type="button" name="goalsFixedButton" value="_"/>
+    <p>Up To Your Goals</p>
+  </div>
 
 </div>

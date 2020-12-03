@@ -1,28 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  font: 1.6em/110% 'Gentium Basic', serif;
-
-}
 
 /* main wrapper for all the site content*/
 #wrapper {
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 80%;
+  margin: 5% auto 0 auto;
   position: relative;
-  background-color: beige;
-  padding: 5%;
+  background-color: white;
+  padding: 2%;
   overflow: visible;
+  font-size: large;
 }
-
 
 p {
   text-indent: 2.5em;
 }
 
-.instructionText {
+/*.instructionText {
   font-size: 120%;
-}
+}*/
 
 h1 {
   border: outset midnightblue 3px;
@@ -81,28 +76,6 @@ input[type=text], input[type=email]  {
   font-size: 80%;
 }
 
-/*Textarea for entering your life goals*/
-#lifeList {
-  width: 90%;
-  height: 200px;
-  background-color: lightcyan;
-}
-
-
-textarea {
-  width: 80%;
-  height: auto;
-  padding: 10px;
-  display: block;
-  resize: none;
-  border: outset 2px navy;
-  border-radius: 10px;
-  color: darkblue;
-  font-size: 80%;
-  font-family: 'Arimo', sans-serif;
-  margin: 0 10% 0 0;
-}
-
 /*class that helps to separate the divs in columns*/
 .goalsBlocks {
   /* width: 80%;*/
@@ -132,18 +105,15 @@ input {
   display: block;
 }
 
-.description {
-  font-size: 80%;
-  font-family: 'Arimo', sans-serif;
-}
 
-.instruction {
+
+/*.instruction {
   font-size: 140%;
   font-weight: bolder;
   font-family: 'Arimo', sans-serif;
   color: lawngreen;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
+}*/
 
 .goalDraggable {
   margin: 0 auto;
@@ -163,26 +133,6 @@ li {
   list-style-position: inside;
   padding-left: 0;
 
-}
-
-
-table {
-  width: 100%;
-  margin: 2% 0 20% 0;
-
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-td {
-  vertical-align: top;
-  padding-left: 20px;
-  width: 50%;
-
-}
-
-#tdForTextArea {
-  width: 100%;
 }
 
 .goals, .goalsBlocks, .titles, .buttons, .description, #sendEmailForm, #createPDFbutton, #goalsBtnDiv {
@@ -208,10 +158,6 @@ td {
 
   margin: 0 auto;
 
-}
-
-.testsLinks {
-  text-decoration: none;
 }
 
 summary {
