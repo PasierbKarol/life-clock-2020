@@ -15,5 +15,5 @@ export const APP_ROUTE_TYPE_TITLE =
     [AppRouteType.APP_LOGIN, 'Login'],
     [AppRouteType.APP_REGISTRATION, 'Registration'],
     [AppRouteType.WELCOME, 'Life Clock 2020 - Welcome'],
-    [AppRouteType.CLOCK, 'Life Cl`ock']
+    [AppRouteType.CLOCK, 'Life Clock']
   ]));

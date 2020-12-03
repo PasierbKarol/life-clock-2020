@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {APP_ROUTE_TYPE_TITLE, AppRouteType} from './app-route-type.js';
 import {WelcomeInfoComponent} from './welcome-info/welcome-info.component';
 import {AuthorisationGuard} from './guards/authorisation-guard.service';
+import { LifeClockComponent } from './life-clock/life-clock.component';
 
 export const APP_ROUTE_PREFIX = 'app';
 const DEFAULT_ROUTE = `${APP_ROUTE_PREFIX}/`;
@@ -21,12 +22,12 @@ export const routes: Routes = [
     data: {title: APP_ROUTE_TYPE_TITLE.get(AppRouteType.WELCOME)},
     canActivate: [AuthorisationGuard]
   },
-  /*{
+  {
     path: AppRouteType.CLOCK,
-    component: LevelsInCalendarComponent,
+    component: LifeClockComponent,
     data: {title: APP_ROUTE_TYPE_TITLE.get(AppRouteType.CLOCK)},
     canActivate: [AuthorisationGuard]
-  },*/
+  },
   {path: '**', redirectTo: DEFAULT_ROUTE}
 ];
 @NgModule({
