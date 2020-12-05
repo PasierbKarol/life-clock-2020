@@ -19,63 +19,6 @@ p {
   font-size: 120%;
 }*/
 
-h1 {
-  border: outset midnightblue 3px;
-  background-color: lightskyblue;
-  color: #00008b;
-  font-family: 'Cinzel', serif;
-  text-align: center;
-  padding: 3%;
-}
-
-
-h2 {
-  font-family: 'Chewy', cursive;
-  border: outset dodgerblue 2px;
-  box-shadow: deepskyblue 2px 2px 5px;
-  padding: 2% ;
-  text-align: center;
-  background-color: aliceblue;
-}
-
-h3 {
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  color: red;
-  font-size: 130%;
-}
-
-h4 {
-  color: darkred;
-  font-size: 150%;
-}
-
-h3, h4 {
-  font-family: 'Patrick Hand', cursive;
-  margin: 20px 0 1em 0;
-  letter-spacing: 3px;
-  font-weight: bolder;
-}
-
-input[type=checkbox] {
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  padding: 10px;
-  margin-left: 30px;
-  display: inline;
-}
-
-input[type=text], input[type=email]  {
-  width: 20%;
-  height: 1em;
-  display: block;
-  background-color: aliceblue;
-  color: navy;
-  font-size: 80%;
-}
-
 /*class that helps to separate the divs in columns*/
 .goalsBlocks {
   /* width: 80%;*/
@@ -93,27 +36,6 @@ input[type=text], input[type=email]  {
   display: block;
 }
 
-input {
-  margin: 1% 0 0 0;
-  padding: 10px 20px 10px 20px;
-  background-color: cyan;
-  border: ridge 1px blueviolet;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 80%;
-  color: slategrey;
-  display: block;
-}
-
-
-
-/*.instruction {
-  font-size: 140%;
-  font-weight: bolder;
-  font-family: 'Arimo', sans-serif;
-  color: lawngreen;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}*/
 
 .goalDraggable {
   margin: 0 auto;
@@ -135,9 +57,9 @@ li {
 
 }
 
-.goals, .goalsBlocks, .titles, .buttons, .description, #sendEmailForm, #createPDFbutton, #goalsBtnDiv {
+/*.goals, .goalsBlocks, .titles, .buttons, .description, #sendEmailForm, #createPDFbutton, #goalsBtnDiv {
   display: none;
-}
+}*/
 
 #goalsBtnDiv {
   position: fixed;
@@ -160,7 +82,5 @@ li {
 
 }
 
-summary {
-  color: darkred;
-  font-weight: bold;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

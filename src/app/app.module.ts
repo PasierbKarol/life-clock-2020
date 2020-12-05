@@ -6,6 +6,9 @@ import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
 import { LifeClockComponent } from './life-clock/life-clock.component';
 import { GoalsBoxComponent } from './goals-box/goals-box.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,8 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
