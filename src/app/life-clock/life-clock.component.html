@@ -1,17 +1,23 @@
 <div id="mainContent">
   <div id="tdForTextArea">
     <textarea id="lifeList" required placeholder="Please enter your life goals here."></textarea>
-    <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete" >Submit List</button>
-
-
+    <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete">Submit List</button>
     <p class="description">All your goals are now included in the list below.
       You can use the mouse to drag every one of them and move around.
       However, they can be dropped only into the boxes like the one on the right. <br/>
     </p>
   </div>
 
+  <div id="goal-boxes-section" *ngFor="let goal of goals; index as index">
+    <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
+                   [blockDescription]="goal.description" [index]="index"
+                   (sectionSubmitted)="sectionCompleted($event)"
+                   *ngIf="index <= currentlyVisibleSection"></app-goals-box>
+  </div>
+
+  <hr>
   <div>
-    <p id="finalDescription" class="description goals">You are at the final step. <br/>
+    <p id="finalDescription" class="description goals">You are at the final step.
       You have written your goals and organized them depending on their priority.
       Now you can take a look once more, go through all of them again to assure yourself this is the correct order
       of your dreams.
@@ -28,15 +34,14 @@
   </div>
 
   <div>
-    <form action="../results/results.php" method="post">
-      <input id="testResults" type="hidden" name="testResults" value=""/>
-      <input id="goalsCompleteButton" type="submit" name="goalsComplete" value="Submit Your Goals" class="buttons"/>
-    </form>
+    <button mat-raised-button color="accent" id="goalsCompleteButton" type="submit" name="goalsComplete">Submit Your
+      Goals
+    </button>
   </div>
 
-
+  <br/>
   <div id="goalsBtnDiv">
-    <input id="goalsFixedButton" type="button" name="goalsFixedButton" value="_"/>
+    <button mat-raised-button color="primary" id="goalsFixedButton" type="button" name="goalsFixedButton">_</button>
     <p>Up To Your Goals</p>
   </div>
 

@@ -7,8 +7,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class GoalsBoxComponent implements OnInit {
 
-  @Input() public goalsBlockId: string;
-  @Input() public goalsBlockTitle: string;
+  @Input() public blockId: string;
+  @Input() public index: string;
+  @Input() public blockTitle: string;
   @Input() public blockDescription: string;
   @Output() public sectionSubmitted: EventEmitter<any> = new EventEmitter<any>();
 
@@ -18,6 +19,6 @@ export class GoalsBoxComponent implements OnInit {
   }
 
   public completeSection(): void {
-    this.sectionSubmitted.emit(this.goalsBlockId);
+    this.sectionSubmitted.emit(this.index + 1);
   }
 }
