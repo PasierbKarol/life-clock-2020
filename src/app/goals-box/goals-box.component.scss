@@ -1,17 +1,15 @@
 .goals-block {
   height: 100px;
+  width: 90%;
   border: red 2px solid;
   background-color: lightgrey;
+  border-radius: 15px;
+  //display: block;
 }
 
-.goalsBlocks {
-  /* width: 80%;*/
-  height: auto;
-  border: solid 1px darkslateblue;
-  border-left: outset 10px blue;
-  background-color: aliceblue;
-  padding: 10px;
-  margin: 0 0 5% 0;
-  font-size: 80%;
-  min-height: 60px;
+.goals-box-description {
+  min-height: 120px;
+  width: 90%;
 }
+
+

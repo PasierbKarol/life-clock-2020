@@ -9,3 +9,21 @@
   padding: 1em;
 }
 
+#goal-boxes-section {
+  height: 1500px;
+}
+
+.mainContent {
+  height: 100%;
+}
+
+#draggable-goals-list {
+  border: solid deepskyblue 1px;
+}
+
+.draggable-goal {
+  margin: 0 auto;
+  padding: 0;
+  cursor: pointer;
+  color: indianred;
+}

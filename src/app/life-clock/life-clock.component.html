@@ -1,20 +1,25 @@
 <div id="mainContent">
   <div id="tdForTextArea">
-    <textarea id="lifeList" required placeholder="Please enter your life goals here."></textarea>
-    <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete">Submit List</button>
+    <textarea id="lifeList" #lifeList required placeholder="Please enter your life goals here."></textarea>
+    <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete"
+            (click)="listSubmitted(lifeList.value)">Submit List
+    </button>
     <p class="description">All your goals are now included in the list below.
       You can use the mouse to drag every one of them and move around.
       However, they can be dropped only into the boxes like the one on the right. <br/>
     </p>
   </div>
 
-  <div id="goal-boxes-section" *ngFor="let goal of goals; index as index">
-    <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
-                   [blockDescription]="goal.description" [index]="index"
-                   (sectionSubmitted)="sectionCompleted($event)"
-                   *ngIf="index <= currentlyVisibleSection"></app-goals-box>
-  </div>
+  <div id="draggable-goals-list" #draggableGoalsList></div>
 
+  <mat-grid-list id="goal-boxes-section" cols="2" rowHeight="fit">
+    <mat-grid-tile *ngFor="let goal of goalsTexts; index as index">
+      <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
+                     [blockDescription]="goal.description" [index]="index"
+                     (sectionSubmitted)="sectionCompleted($event)"
+                     *ngIf="index <= currentlyVisibleSection"></app-goals-box>
+    </mat-grid-tile>
+  </mat-grid-list>
   <hr>
   <div>
     <p id="finalDescription" class="description goals">You are at the final step.
