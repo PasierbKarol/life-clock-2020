@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentConstants } from './content-constants';
 
 @Component({
   selector: 'app-life-clock',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LifeClockComponent implements OnInit {
 
-  constructor() { }
+  public goals = ContentConstants.lifeClockEN.goalBlocks;
+  public constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }

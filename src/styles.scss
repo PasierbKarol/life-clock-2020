@@ -15,53 +15,20 @@ p {
   text-indent: 2.5em;
 }
 
-/*.instructionText {
-  font-size: 120%;
-}*/
-
-/*class that helps to separate the divs in columns*/
-.goalsBlocks {
-  /* width: 80%;*/
-  height: auto;
-  border: solid 1px darkslateblue;
-  border-left: outset 10px blue;
-  background-color: aliceblue;
-  padding: 10px;
-  margin: 0 0 5% 0;
-  font-size: 80%;
-  min-height: 60px;
-}
-
-#listComplete {
-  display: block;
-}
-
 
 .goalDraggable {
   margin: 0 auto;
   padding: 0;
   cursor: pointer;
   /* display: inline-block;*/
-  color: midnightblue;
-}
-
-.draggedGoal {
-  background-color: aliceblue;
-  font-family: 'Cinzel', serif;
-  font-weight: bold;
-}
-
-li {
-  list-style-position: inside;
-  padding-left: 0;
-
+  color: indianred;
 }
 
 /*.goals, .goalsBlocks, .titles, .buttons, .description, #sendEmailForm, #createPDFbutton, #goalsBtnDiv {
   display: none;
 }*/
 
-#goalsBtnDiv {
+/*#goalsBtnDiv {
   position: fixed;
   top: 80%;
   left: 5%;
@@ -80,7 +47,7 @@ li {
 
   margin: 0 auto;
 
-}
+}*/
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

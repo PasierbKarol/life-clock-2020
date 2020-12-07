@@ -1,26 +1,11 @@
-/*Textarea for entering your life goals*/
 #lifeList {
-  width: 90%;
-  height: 200px;
-  background-color: lightcyan;
-}
-
-
-textarea {
-  width: 80%;
   height: auto;
-  padding: 10px;
-  display: block;
+  min-height: 200px;
+  background-color: #eaeaea;
   resize: none;
-  border: outset 2px navy;
-  border-radius: 10px;
-  color: darkblue;
-  font-size: 80%;
-  font-family: 'Arimo', sans-serif;
-  margin: 0 10% 0 0;
+  display: block;
+  width: 100%;
+  margin: 0 0 2em 0;
+  padding: 1em;
 }
 
-.description {
-  font-size: 80%;
-  font-family: 'Arimo', sans-serif;
-}
