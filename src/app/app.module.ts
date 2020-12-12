@@ -8,6 +8,8 @@ import { GoalsBoxComponent } from './goals-box/goals-box.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { DraggableGoalComponent } from './draggable-goal/draggable-goal.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,18 @@ import { MaterialModule } from './material/material.module';
     WelcomeInfoComponent,
     LifeClockComponent,
     GoalsBoxComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    DraggableGoalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    DragDropModule
+  ],
+  exports: [
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

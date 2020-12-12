@@ -10,14 +10,16 @@
     </p>
   </div>
 
-  <div id="draggable-goals-list" #draggableGoalsList></div>
+  <div id="draggable-goals-list" #draggableGoalsList *ngIf="areGoalsSubmitted" class="noselect" cdkDropList>
+    <app-draggable-goal [goal]="goal" *ngFor="let goal of goals"></app-draggable-goal>
+  </div>
 
-  <mat-grid-list id="goal-boxes-section" cols="2" rowHeight="fit">
+  <mat-grid-list id="goal-boxes-section" cols="2" rowHeight="fit" cdkDropListGroup>
     <mat-grid-tile *ngFor="let goal of goalsTexts; index as index">
       <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
                      [blockDescription]="goal.description" [index]="index"
                      (sectionSubmitted)="sectionCompleted($event)"
-                     *ngIf="index <= currentlyVisibleSection"></app-goals-box>
+                     *ngIf="index <= currentlyVisibleSection" cdkDropList></app-goals-box>
     </mat-grid-tile>
   </mat-grid-list>
   <hr>

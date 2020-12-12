@@ -21,9 +21,6 @@
   border: solid deepskyblue 1px;
 }
 
-.draggable-goal {
-  margin: 0 auto;
-  padding: 0;
-  cursor: pointer;
-  color: indianred;
+.noselect {
+  user-select: none;
 }

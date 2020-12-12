@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnChanges, ViewChild } from '@angular/core';
 import { ContentConstants } from './content-constants';
 
 @Component({
@@ -6,7 +6,7 @@ import { ContentConstants } from './content-constants';
   templateUrl: './life-clock.component.html',
   styleUrls: ['./life-clock.component.scss']
 })
-export class LifeClockComponent implements OnInit {
+export class LifeClockComponent implements OnChanges {
 
   @ViewChild('draggableGoalsList', { static: false }) public draggableGoalsList: ElementRef;
   public goalsTexts: any = ContentConstants.lifeClockEN.goalBlocks;
@@ -15,10 +15,11 @@ export class LifeClockComponent implements OnInit {
   public goals: string[];
   public areGoalsSubmitted: boolean = false;
 
-  public constructor(private renderer: Renderer2) {
+  public constructor() {
   }
 
-  public ngOnInit() {
+  public ngOnChanges() {
+    this.goals = [];
   }
 
   public sectionCompleted(id: number): void {
@@ -31,17 +32,19 @@ export class LifeClockComponent implements OnInit {
     console.log(goalsFromView.split(/\n/g), 'value goals');
     console.log(this.draggableGoalsList, 'el ref');
     this.goals = goalsFromView.split(/\n/g);
-    this.composeDraggableGoals();
+    // TODO clear list
 
   }
 
   private composeDraggableGoals(): void {
     for (const goal of this.goals) {
-      const dragGoal = this.renderer.createElement('div');
-      this.renderer.addClass(dragGoal, 'draggable-goal');
-      const text = this.renderer.createText(goal);
-      this.renderer.appendChild(dragGoal, text);
-      this.renderer.appendChild(this.draggableGoalsList.nativeElement, dragGoal);
+      this.draggableGoalsList.nativeElement
+        .insertAdjacentElement('afterend', '<div class="draggable-goal" cdkDrag>' + goal + '</div>');
+      /*      this.renderer.addClass(dragGoal, 'draggable-goal');
+            const text = this.renderer.createText(goal);
+            this.renderer.appendChild(dragGoal, text);
+            this.renderer.appendChild(this.draggableGoalsList.nativeElement, dragGoal);
+            this.renderer.setAttribute(dragGoal, 'cdkDrag', null, null);*/
     }
   }
 }
