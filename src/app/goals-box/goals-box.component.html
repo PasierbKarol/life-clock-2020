@@ -3,6 +3,12 @@
   <p>{{!!blockDescription ? blockDescription : 'The description is loading...'}}</p>
 </div>
 
-<div [id]="blockId" class="goals-block"></div>
+<div [id]="blockId" class="goals-block clock-goals-list" cdkDropList
+     [cdkDropListData]="goals"
+     (cdkDropListDropped)="onDrop($event)">
+  <div class="draggable-goal" *ngFor="let goal of goals" cdkDrag>{{goal}}</div>
+</div>
 
-<button mat-raised-button color="primary" [id]="blockId + '-submit'" (click)="completeSection()" [name]="blockId" class="buttons">Continue</button>
+<button mat-raised-button color="primary" [id]="blockId + '-submit'" (click)="completeSection()" [name]="blockId"
+        class="buttons">Continue
+</button>

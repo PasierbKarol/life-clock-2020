@@ -9,19 +9,22 @@
       However, they can be dropped only into the boxes like the one on the right. <br/>
     </p>
   </div>
+  <hr>
+  <div id="clock-goals-section" cdkDropListGroup>
+    <div id="draggable-goals-list" *ngIf="areGoalsSubmitted" class="noselect clock-goals-list" cdkDropList
+         (cdkDropListDropped)="onDrop($event)" [cdkDropListData]="goals">
+      <div class="draggable-goal" *ngFor="let goal of goals" cdkDrag>{{goal}}</div>
+    </div>
 
-  <div id="draggable-goals-list" #draggableGoalsList *ngIf="areGoalsSubmitted" class="noselect" cdkDropList>
-    <app-draggable-goal [goal]="goal" *ngFor="let goal of goals"></app-draggable-goal>
+    <mat-grid-list id="goal-boxes-section" cols="2" rowHeight="fit">
+      <mat-grid-tile *ngFor="let goal of goalsTexts; index as index">
+        <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
+                       [blockDescription]="goal.description" [index]="index"
+                       (sectionSubmitted)="sectionCompleted($event)"
+                       *ngIf="index <= currentlyVisibleSection"></app-goals-box>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
-
-  <mat-grid-list id="goal-boxes-section" cols="2" rowHeight="fit" cdkDropListGroup>
-    <mat-grid-tile *ngFor="let goal of goalsTexts; index as index">
-      <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
-                     [blockDescription]="goal.description" [index]="index"
-                     (sectionSubmitted)="sectionCompleted($event)"
-                     *ngIf="index <= currentlyVisibleSection" cdkDropList></app-goals-box>
-    </mat-grid-tile>
-  </mat-grid-list>
   <hr>
   <div>
     <p id="finalDescription" class="description goals">You are at the final step.

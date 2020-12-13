@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnChanges, ViewChild } from '@angular/core';
 import { ContentConstants } from './content-constants';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DraggingHelperService } from '../services/dragging-helper.service';
 
 @Component({
   selector: 'app-life-clock',
@@ -13,13 +15,19 @@ export class LifeClockComponent implements OnChanges {
   public sections: number = this.goalsTexts.length;
   public currentlyVisibleSection: number = 0;
   public goals: string[];
+  public copiedGoals: string[];
   public areGoalsSubmitted: boolean = false;
 
-  public constructor() {
+  public constructor(private draggingService: DraggingHelperService) {
+  }
+
+  public onDrop(event: CdkDragDrop<string[]>) {
+    this.goals = this.draggingService.drop(event);
   }
 
   public ngOnChanges() {
     this.goals = [];
+    this.copiedGoals = this.copyGoals();
   }
 
   public sectionCompleted(id: number): void {
@@ -29,22 +37,14 @@ export class LifeClockComponent implements OnChanges {
 
   public listSubmitted(goalsFromView: any): void {
     this.areGoalsSubmitted = true;
-    console.log(goalsFromView.split(/\n/g), 'value goals');
     console.log(this.draggableGoalsList, 'el ref');
     this.goals = goalsFromView.split(/\n/g);
     // TODO clear list
 
   }
 
-  private composeDraggableGoals(): void {
-    for (const goal of this.goals) {
-      this.draggableGoalsList.nativeElement
-        .insertAdjacentElement('afterend', '<div class="draggable-goal" cdkDrag>' + goal + '</div>');
-      /*      this.renderer.addClass(dragGoal, 'draggable-goal');
-            const text = this.renderer.createText(goal);
-            this.renderer.appendChild(dragGoal, text);
-            this.renderer.appendChild(this.draggableGoalsList.nativeElement, dragGoal);
-            this.renderer.setAttribute(dragGoal, 'cdkDrag', null, null);*/
-    }
+  public copyGoals(): string[] {
+    return this.goals.concat();
   }
+
 }
