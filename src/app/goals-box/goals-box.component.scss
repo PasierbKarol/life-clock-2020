@@ -1,8 +1,10 @@
+@import '../draggable';
+
 .goals-block {
-  height: 100px;
+  min-height: 100px;
+  height: 100%;
   width: 90%;
   border: red 2px solid;
-  background-color: lightgrey;
   border-radius: 15px;
   //display: block;
 }
