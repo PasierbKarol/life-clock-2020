@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentConstants } from '../life-clock/content-constants';
 
 @Component({
   selector: 'app-welcome-info',
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome-info.component.scss']
 })
 export class WelcomeInfoComponent implements OnInit {
+
+  private descriptions = ContentConstants.getDescriptions('PL');
+  public title = this.descriptions.introduction_title;
+  public descriptionStart = this.descriptions.introduction;
+  public descriptionMiddle = this.descriptions.introduction_middle;
+  public descriptionFinal = this.descriptions.introduction_final;
 
   constructor() { }
 

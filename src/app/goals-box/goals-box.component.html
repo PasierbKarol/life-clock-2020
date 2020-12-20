@@ -1,6 +1,6 @@
 <h3 [id]="blockId + '-title'">{{blockTitle}}</h3>
 <div class="goals-box-description">
-  <p>{{!!blockDescription ? blockDescription : 'The description is loading...'}}</p>
+  <p>{{!!blockDescription ? blockDescription : 'Trwa ładowanie opisu...'}}</p>
 </div>
 
 <div [id]="blockId" class="goals-block clock-goals-list" cdkDropList
@@ -10,5 +10,5 @@
 </div>
 
 <button mat-raised-button color="primary" [id]="blockId + '-submit'" (click)="completeSection()" [name]="blockId"
-        class="buttons">Continue
+        class="buttons">Kontynuuj
 </button>

@@ -1,8 +1,9 @@
 <div id="mainContent">
   <div id="tdForTextArea">
-    <textarea id="lifeList" #lifeList required placeholder="Please enter your life goals here."></textarea>
+    <textarea id="lifeList" #lifeList required
+              placeholder="Wypisz lub wklej tutaj swoje cele oddzielając je przyciskiem Enter."></textarea>
     <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete"
-            (click)="listSubmitted(lifeList.value)">Submit List
+            (click)="listSubmitted(lifeList.value)">Zatwierdź listę
     </button>
     <p class="description">All your goals are now included in the list below.
       You can use the mouse to drag every one of them and move around.
@@ -44,15 +45,15 @@
   </div>
 
   <div>
-    <button mat-raised-button color="accent" id="goalsCompleteButton" type="submit" name="goalsComplete">Submit Your
-      Goals
+    <button mat-raised-button color="accent" id="goalsCompleteButton" type="submit" name="goalsComplete">Zatwierdź
+      Cele
     </button>
   </div>
 
   <br/>
   <div id="goalsBtnDiv">
     <button mat-raised-button color="primary" id="goalsFixedButton" type="button" name="goalsFixedButton">_</button>
-    <p>Up To Your Goals</p>
+    <p>Wróć na górę strony</p>
   </div>
 
 </div>

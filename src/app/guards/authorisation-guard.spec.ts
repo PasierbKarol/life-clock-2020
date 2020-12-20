@@ -8,7 +8,7 @@ describe('AuthorisationGuard', () => {
     });
   });
 
-  it('should ...', inject([AuthorisationGuard], (guard: AuthorisationGuard) => {
+  it('should create', inject([AuthorisationGuard], (guard: AuthorisationGuard) => {
     expect(guard).toBeTruthy();
   }));
 });
