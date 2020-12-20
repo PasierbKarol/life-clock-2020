@@ -11,14 +11,13 @@ import { DraggingHelperService } from '../services/dragging-helper.service';
 export class LifeClockComponent implements OnChanges {
 
   @ViewChild('draggableGoalsList', { static: false }) public draggableGoalsList: ElementRef;
+  @ViewChild('lifeList', { static: false }) public lifeList: ElementRef;
   private descriptions = ContentConstants.getDescriptions('PL');
   public goalsTexts: any = this.descriptions.goalBlocks;
   public listInstructions: string = this.descriptions.list_instructions;
   public summary: string = this.descriptions.final_summary;
-  public sections: number = this.goalsTexts.length;
   public currentlyVisibleSection: number = 0;
   public goals: string[];
-  public copiedGoals: string[];
   public areGoalsSubmitted: boolean = false;
 
   public constructor(private draggingService: DraggingHelperService) {
@@ -30,24 +29,18 @@ export class LifeClockComponent implements OnChanges {
 
   public ngOnChanges() {
     this.goals = [];
-    this.copiedGoals = this.copyGoals();
   }
 
   public sectionCompleted(id: number): void {
-    console.log(id, 'section completed');
     this.currentlyVisibleSection = id > this.currentlyVisibleSection ? id : this.currentlyVisibleSection;
   }
 
   public listSubmitted(goalsFromView: any): void {
     this.areGoalsSubmitted = true;
-    console.log(this.draggableGoalsList, 'el ref');
     this.goals = goalsFromView.split(/\n/g);
-    // TODO clear list
-
+    this.goals = this.goals.filter(v => v !== '');
+    this.lifeList.nativeElement.value = '';
   }
 
-  public copyGoals(): string[] {
-    return this.goals.concat();
-  }
 
 }
