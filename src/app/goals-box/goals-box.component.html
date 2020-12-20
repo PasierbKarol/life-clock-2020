@@ -1,8 +1,16 @@
-<h3 [id]="blockId + '-title'">{{blockTitle}}</h3>
-<div class="goals-box-description">
-  <p>{{!!blockDescription ? blockDescription : 'Trwa ładowanie opisu...'}}</p>
-</div>
-
+<mat-accordion>
+  <mat-expansion-panel [expanded]="isSectionCompleted === false" (opened)="isSectionCompleted = false"
+                       (closed)="isSectionCompleted = true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3 [id]="blockId + '-title'">{{blockTitle}}</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="goals-box-description">
+      <p>{{!!blockDescription ? blockDescription : 'Trwa ładowanie opisu...'}}</p>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
 <div [id]="blockId" class="goals-block clock-goals-list" cdkDropList
      [cdkDropListData]="goals"
      (cdkDropListDropped)="onDrop($event)">

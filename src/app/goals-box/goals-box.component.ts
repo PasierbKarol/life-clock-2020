@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { DraggingHelperService } from '../services/dragging-helper.service';
 
 @Component({
@@ -9,13 +9,14 @@ import { DraggingHelperService } from '../services/dragging-helper.service';
 })
 export class GoalsBoxComponent implements OnChanges {
 
+  public goals: string[];
   @Input() public blockId: string;
   @Input() public index: string;
   @Input() public blockTitle: string;
   @Input() public blockDescription: string;
-  public goals: string[];
   @Input() public dragListOrigin: any;
   @Output() public sectionSubmitted: EventEmitter<any> = new EventEmitter<any>();
+  private isSectionCompleted: boolean = false;
 
   public constructor(private draggingService: DraggingHelperService) {
   }
@@ -30,6 +31,7 @@ export class GoalsBoxComponent implements OnChanges {
   }
 
   public completeSection(): void {
+    this.isSectionCompleted = true;
     this.sectionSubmitted.emit(this.index + 1);
   }
 }
