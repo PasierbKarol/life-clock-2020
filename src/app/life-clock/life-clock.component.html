@@ -5,10 +5,7 @@
     <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete"
             (click)="listSubmitted(lifeList.value)">Zatwierdź listę
     </button>
-    <p class="description">All your goals are now included in the list below.
-      You can use the mouse to drag every one of them and move around.
-      However, they can be dropped only into the boxes like the one on the right. <br/>
-    </p>
+    <p class="description">{{listInstructions}}</p>
   </div>
   <hr>
   <div id="clock-goals-section" cdkDropListGroup>
@@ -28,20 +25,7 @@
   </div>
   <hr>
   <div>
-    <p id="finalDescription" class="description goals">You are at the final step.
-      You have written your goals and organized them depending on their priority.
-      Now you can take a look once more, go through all of them again to assure yourself this is the correct order
-      of your dreams.
-      <br/>
-      You may still make some changes and drag goals between any of those boxes. Remember, this is all for you to
-      help you make best choices.
-      To prioritize your dreams that way, so you would never regret you did something easy and simple rather than
-      something great you always wanted to do.<br/>
-      And once you prioritize your dreams then simply DO THEM. And check this great video:
-      <a target="_blank" href="https://www.youtube.com/watch?v=M9-IZ1pNk00">DO IT!!!</a>.
-      <br/>
-      Below is the submit button. At the moment it allows you to send the results to your email.
-      When you'll press it your list will be saved.</p>
+    <p id="finalDescription" class="description goals">{{summary}}</p>
   </div>
 
   <div>

@@ -11,7 +11,10 @@ import { DraggingHelperService } from '../services/dragging-helper.service';
 export class LifeClockComponent implements OnChanges {
 
   @ViewChild('draggableGoalsList', { static: false }) public draggableGoalsList: ElementRef;
-  public goalsTexts: any = ContentConstants.getDescriptions('PL').goalBlocks;
+  private descriptions = ContentConstants.getDescriptions('PL');
+  public goalsTexts: any = this.descriptions.goalBlocks;
+  public listInstructions: string = this.descriptions.list_instructions;
+  public summary: string = this.descriptions.final_summary;
   public sections: number = this.goalsTexts.length;
   public currentlyVisibleSection: number = 0;
   public goals: string[];
