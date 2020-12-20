@@ -12,16 +12,20 @@
     <div id="draggable-goals-list" *ngIf="areGoalsSubmitted" class="noselect clock-goals-list" cdkDropList
          (cdkDropListDropped)="onDrop($event)" [cdkDropListData]="goals">
       <div class="draggable-goal" *ngFor="let goal of goals" cdkDrag>{{goal}}</div>
+      <button mat-raised-button color="warn" id="cleanGoalsButton" name="cleanGoalsButton"
+              (click)="startOver()">Zacznij od Nowa
+      </button>
     </div>
+      <mat-grid-list *ngIf="areGoalsSubmitted" id="goal-boxes-section" cols="2" rowHeight="fit">
+        <mat-grid-tile *ngFor="let goal of goalsTexts; index as index">
+          <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
+                         [blockDescription]="goal.description" [index]="index"
+                         [goals]="goals"
+                         (sectionSubmitted)="sectionCompleted($event)"
+                         *ngIf="index <= currentlyVisibleSection"></app-goals-box>
+        </mat-grid-tile>
+      </mat-grid-list>
 
-    <mat-grid-list id="goal-boxes-section" cols="2" rowHeight="fit">
-      <mat-grid-tile *ngFor="let goal of goalsTexts; index as index">
-        <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
-                       [blockDescription]="goal.description" [index]="index"
-                       (sectionSubmitted)="sectionCompleted($event)"
-                       *ngIf="index <= currentlyVisibleSection"></app-goals-box>
-      </mat-grid-tile>
-    </mat-grid-list>
   </div>
   <hr>
   <div>

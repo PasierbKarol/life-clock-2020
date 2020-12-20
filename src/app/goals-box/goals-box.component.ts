@@ -9,7 +9,7 @@ import { DraggingHelperService } from '../services/dragging-helper.service';
 })
 export class GoalsBoxComponent implements OnChanges {
 
-  public goals: string[];
+  @Input() public goals: string[];
   @Input() public blockId: string;
   @Input() public index: string;
   @Input() public blockTitle: string;
@@ -22,8 +22,8 @@ export class GoalsBoxComponent implements OnChanges {
   }
 
   public ngOnChanges() {
-    console.log(this.dragListOrigin, 'origin list');
     this.goals = [];
+    this.isSectionCompleted = false;
   }
 
   public onDrop(event: CdkDragDrop<string[]>) {

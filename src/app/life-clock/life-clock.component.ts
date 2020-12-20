@@ -42,5 +42,10 @@ export class LifeClockComponent implements OnChanges {
     this.lifeList.nativeElement.value = '';
   }
 
+  public startOver(): void {
+    this.goals = [];
+    this.areGoalsSubmitted = false;
+    this.currentlyVisibleSection = 0;
+  }
 
 }
