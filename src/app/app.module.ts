@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { DraggableGoalComponent } from './draggable-goal/draggable-goal.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ViewModeDirective } from './directives/view-mode.directive';
+import { EditModeDirective } from './directives/edit-mode.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     LifeClockComponent,
     GoalsBoxComponent,
     NavigationBarComponent,
-    DraggableGoalComponent
+    DraggableGoalComponent,
+    ViewModeDirective,
+    EditModeDirective
   ],
   imports: [
     BrowserModule,
