@@ -5,4 +5,11 @@
     <path d="M0 0h24v24H0z" fill="none"></path>
   </svg>
 </div>
-<div style="margin-left: 10px">{{goal}}</div>
+<div style="margin-left: 10px" >{{goal}}</div>
+
+<app-editable (update)="updateField(goal)">
+  <ng-template viewMode>{{goal}}</ng-template>
+  <ng-template editMode>
+    <input [(ngModel)]="goal" type="text"/>
+  </ng-template>
+</app-editable>

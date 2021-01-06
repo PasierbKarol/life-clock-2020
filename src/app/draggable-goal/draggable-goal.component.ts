@@ -11,4 +11,7 @@ export class DraggableGoalComponent {
   public constructor() {
   }
 
+  public updateField(goal: any) {
+
+  }
 }

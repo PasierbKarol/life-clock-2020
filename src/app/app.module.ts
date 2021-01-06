@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,7 @@ import { DraggableGoalComponent } from './draggable-goal/draggable-goal.componen
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ViewModeDirective } from './directives/view-mode.directive';
 import { EditModeDirective } from './directives/edit-mode.directive';
+import { EditableComponent } from './editable/editable.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +24,17 @@ import { EditModeDirective } from './directives/edit-mode.directive';
     NavigationBarComponent,
     DraggableGoalComponent,
     ViewModeDirective,
-    EditModeDirective
+    EditModeDirective,
+    EditableComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    DragDropModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        DragDropModule,
+        FormsModule
+    ],
   exports: [
     DragDropModule
   ],
