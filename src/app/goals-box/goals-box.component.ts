@@ -16,7 +16,7 @@ export class GoalsBoxComponent implements OnChanges {
   @Input() public blockDescription: string;
   @Input() public dragListOrigin: any;
   @Output() public sectionSubmitted: EventEmitter<any> = new EventEmitter<any>();
-  private isSectionCompleted: boolean = false;
+  public isSectionCompleted: boolean = false;
 
   public constructor(private draggingService: DraggingHelperService) {
   }

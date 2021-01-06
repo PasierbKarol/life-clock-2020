@@ -1,0 +1,8 @@
+@import '../draggable';
+
+.goal-drag-handle {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  cursor: move;
+}
