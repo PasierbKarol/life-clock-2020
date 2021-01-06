@@ -8,10 +8,12 @@ import { Component, Input } from '@angular/core';
 export class DraggableGoalComponent {
   @Input() public goal: string;
 
+  public isEditable: boolean = false;
+
   public constructor() {
   }
 
-  public updateField(goal: any) {
-
+  public updateField() {
+  this.isEditable = false;
   }
 }

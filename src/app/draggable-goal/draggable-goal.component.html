@@ -5,11 +5,12 @@
     <path d="M0 0h24v24H0z" fill="none"></path>
   </svg>
 </div>
-<div style="margin-left: 10px" >{{goal}}</div>
+<div class="goal" (dblclick)="isEditable=true" *ngIf="!isEditable">{{goal}}</div>
+<input class="goal editable-goal" type="text" [(ngModel)]="goal" *ngIf="isEditable" (blur)="updateField()" (keydown.enter)="updateField()" autofocus/>
 
-<app-editable (update)="updateField(goal)">
+<!--<app-editable (update)="updateField(goal)">
   <ng-template viewMode>{{goal}}</ng-template>
   <ng-template editMode>
     <input [(ngModel)]="goal" type="text"/>
   </ng-template>
-</app-editable>
+</app-editable>-->
