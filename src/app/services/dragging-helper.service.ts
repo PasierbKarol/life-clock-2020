@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Injectable } from '@angular/core';
+import { LifeGoalModel } from 'src/app/models/life-goal.model';
 import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class DraggingHelperService {
   constructor(private goalsProvider: GoalsProviderService) {
   }
 
-  public drop(event: CdkDragDrop<string[]>, isTheSameComponent = true): void {
+  public drop(event: CdkDragDrop<LifeGoalModel[]>, isTheSameComponent = true): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else if (isTheSameComponent) {

@@ -1,5 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { LifeGoalModel } from 'src/app/models/life-goal.model';
 import { DraggingHelperService } from 'src/app/services/dragging-helper.service';
 import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 
@@ -10,7 +11,7 @@ import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 })
 export class GoalsBoxComponent implements OnChanges, OnInit {
 
-  public goals: string[];
+  public lifeGoals: LifeGoalModel[];
   @Input() public blockId: string;
   @Input() public index: string;
   @Input() public blockTitle: string;
@@ -25,17 +26,17 @@ export class GoalsBoxComponent implements OnChanges, OnInit {
   }
 
   public ngOnChanges() {
-    this.goals = [];
+    this.lifeGoals = [];
     this.isSectionCompleted = false;
   }
 
   public ngOnInit(): void {
     this.goalsProvider.goals$.subscribe(allGoals => {
-      this.goals = allGoals.map(goal => goal);
+      this.lifeGoals = allGoals.map(goal => goal);
     });
   }
 
-  public onDrop(event: CdkDragDrop<string[]>) {
+  public onDrop(event: CdkDragDrop<LifeGoalModel[]>) {
     this.draggingService.drop(event);
   }
 

@@ -5,8 +5,8 @@
     <path d="M0 0h24v24H0z" fill="none"></path>
   </svg>
 </div>
-<div class="goal" (dblclick)="isEditable=true" *ngIf="!isEditable">{{goal}}</div>
-<input class="goal editable-goal" type="text" [(ngModel)]="goal" *ngIf="isEditable" (blur)="updateField()" (keydown.enter)="updateField()" autofocus/>
+<div class="goal" (dblclick)="isEditable=true" *ngIf="!isEditable">{{lifeGoal}}</div>
+<input class="goal editable-goal" type="text" [(ngModel)]="lifeGoal" *ngIf="isEditable" (blur)="updateField()" (keydown.enter)="updateField()" autofocus/>
 
 <!--<app-editable (update)="updateField(goal)">
   <ng-template viewMode>{{goal}}</ng-template>

@@ -10,10 +10,10 @@
   <hr>
   <div id="clock-goals-section" cdkDropListGroup>
     <div id="draggable-goals-list" *ngIf="areGoalsSubmitted" class="noselect clock-goals-list" cdkDropList
-         (cdkDropListDropped)="onDrop($event)" [cdkDropListData]="goals">
-      <div class="draggable-goal" *ngFor="let goal of goals" cdkDrag>
+         (cdkDropListDropped)="onDrop($event)" [cdkDropListData]="lifeGoals">
+      <div class="draggable-goal" *ngFor="let lifeGoal of lifeGoals" cdkDrag>
         <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-        <app-draggable-goal [goal]="goal"></app-draggable-goal>
+        <app-draggable-goal [lifeGoal]="lifeGoal"></app-draggable-goal>
       </div>
       <button mat-raised-button color="warn" id="cleanGoalsButton" name="cleanGoalsButton"
               (click)="startOver()">Zacznij od Nowa

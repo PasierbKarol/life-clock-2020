@@ -1,5 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { LifeGoalModel } from 'src/app/models/life-goal.model';
 import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 import { DraggingHelperService } from '../services/dragging-helper.service';
 import { ContentConstants } from './content-constants';
@@ -17,7 +18,7 @@ export class LifeClockComponent implements OnChanges, OnInit {
   public listInstructions: string = this.descriptions.list_instructions;
   public summary: string = this.descriptions.final_summary;
   public currentlyVisibleSection: number = 0;
-  public goals: string[] = [];
+  public lifeGoals: LifeGoalModel[] = [];
   public areGoalsSubmitted: boolean = false;
 
   public constructor(
@@ -26,18 +27,18 @@ export class LifeClockComponent implements OnChanges, OnInit {
   ) {
   }
 
-  public onDrop(event: CdkDragDrop<string[]>) {
+  public onDrop(event: CdkDragDrop<LifeGoalModel[]>) {
     this.draggingService.drop(event);
   }
 
   public ngOnChanges() {
     // this.goalsProvider.clearGoals();
-    this.goals = [];
+    this.lifeGoals = [];
   }
 
   public ngOnInit(): void {
     this.goalsProvider.goals$.subscribe(allGoals => {
-      this.goals = allGoals.map(goal => goal);
+      this.lifeGoals = allGoals.map(goal => goal);
     });
   }
 
@@ -47,12 +48,12 @@ export class LifeClockComponent implements OnChanges, OnInit {
 
   public listSubmitted(goalsFromView: any): void {
     this.areGoalsSubmitted = true;
-    this.goalsProvider.createGoalsFromList(goalsFromView);
+    this.goalsProvider.createGoalsFromList(goalsFromView, 'LifeClockComponent');
     this.lifeList.nativeElement.value = '';
   }
 
   public startOver(): void {
-    this.goals = [];
+    this.lifeGoals = [];
     this.areGoalsSubmitted = false;
     this.currentlyVisibleSection = 0;
   }

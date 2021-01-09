@@ -12,12 +12,12 @@
   </mat-expansion-panel>
 </mat-accordion>
 <div [id]="blockId" class="goals-block clock-goals-list" cdkDropList
-     [cdkDropListData]="goals"
+     [cdkDropListData]="lifeGoals"
      (cdkDropListDropped)="onDrop($event)">
-  <div class="draggable-goal" *ngFor="let goal of goals" cdkDrag>
+  <div class="draggable-goal" *ngFor="let goal of lifeGoals" cdkDrag>
 
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-    <app-draggable-goal [goal]="goal"></app-draggable-goal>
+    <app-draggable-goal [lifeGoal]="goal"></app-draggable-goal>
   </div>
 </div>
 
