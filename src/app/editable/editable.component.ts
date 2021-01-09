@@ -38,7 +38,7 @@ export class EditableComponent implements OnInit {
 
   private viewModeHandler() {
     fromEvent(this.element, 'dblclick').pipe(
-      untilDestroyed(this)
+      // untilDestroyed(this)
     ).subscribe(() => {
       this.mode = 'edit';
       this.editMode.next(true);
@@ -47,13 +47,13 @@ export class EditableComponent implements OnInit {
 
   private editModeHandler() {
     const clickOutside$ = fromEvent(document, 'click').pipe(
-      filter(({ target }) => this.element.contains(target) === false),
+      // filter(({ target }) => this.element.contains(target) === false),
       take(1)
     )
 
     this.editMode$.pipe(
       switchMapTo(clickOutside$),
-      untilDestroyed(this)
+      // untilDestroyed(this)
     ).subscribe(event => {
       this.update.next();
       this.mode = 'view';

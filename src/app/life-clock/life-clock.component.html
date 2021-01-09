@@ -23,7 +23,6 @@
       <mat-grid-tile *ngFor="let goal of goalsTexts; index as index">
         <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
                        [blockDescription]="goal.description" [index]="index"
-                       [goals]="goals"
                        (sectionSubmitted)="sectionCompleted($event)"
                        *ngIf="index <= currentlyVisibleSection"></app-goals-box>
       </mat-grid-tile>

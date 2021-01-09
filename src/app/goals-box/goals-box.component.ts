@@ -1,24 +1,27 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { DraggingHelperService } from '../services/dragging-helper.service';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { DraggingHelperService } from 'src/app/services/dragging-helper.service';
+import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 
 @Component({
   selector: 'app-goals-box',
   templateUrl: './goals-box.component.html',
   styleUrls: ['./goals-box.component.scss']
 })
-export class GoalsBoxComponent implements OnChanges {
+export class GoalsBoxComponent implements OnChanges, OnInit {
 
-  @Input() public goals: string[];
+  public goals: string[];
   @Input() public blockId: string;
   @Input() public index: string;
   @Input() public blockTitle: string;
   @Input() public blockDescription: string;
-  @Input() public dragListOrigin: any;
   @Output() public sectionSubmitted: EventEmitter<any> = new EventEmitter<any>();
   public isSectionCompleted: boolean = false;
 
-  public constructor(private draggingService: DraggingHelperService) {
+  public constructor(
+    private draggingService: DraggingHelperService,
+    private goalsProvider: GoalsProviderService
+  ) {
   }
 
   public ngOnChanges() {
@@ -26,8 +29,14 @@ export class GoalsBoxComponent implements OnChanges {
     this.isSectionCompleted = false;
   }
 
+  public ngOnInit(): void {
+    this.goalsProvider.goals$.subscribe(allGoals => {
+      this.goals = allGoals.map(goal => goal);
+    });
+  }
+
   public onDrop(event: CdkDragDrop<string[]>) {
-    this.goals = this.draggingService.drop(event);
+    this.draggingService.drop(event);
   }
 
   public completeSection(): void {
