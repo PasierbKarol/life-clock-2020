@@ -1,19 +1,19 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
-import { LifeClockComponent } from './life-clock/life-clock.component';
-import { GoalsBoxComponent } from './goals-box/goals-box.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
-import { DraggableGoalComponent } from './draggable-goal/draggable-goal.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ViewModeDirective } from './directives/view-mode.directive';
 import { EditModeDirective } from './directives/edit-mode.directive';
+import { ViewModeDirective } from './directives/view-mode.directive';
+import { DraggableGoalComponent } from './draggable-goal/draggable-goal.component';
 import { EditableComponent } from './editable/editable.component';
+import { GoalsBoxComponent } from './goals-box/goals-box.component';
+import { LifeClockComponent } from './life-clock/life-clock.component';
+import { MaterialModule } from './material/material.module';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +27,14 @@ import { EditableComponent } from './editable/editable.component';
     EditModeDirective,
     EditableComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        DragDropModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    DragDropModule,
+    FormsModule
+  ],
   exports: [
     DragDropModule
   ],

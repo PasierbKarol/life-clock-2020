@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GoalsBoxComponent } from './goals-box.component';
 
 describe('GoalsBoxComponent', () => {
@@ -8,9 +7,9 @@ describe('GoalsBoxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoalsBoxComponent ]
+      declarations: [GoalsBoxComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

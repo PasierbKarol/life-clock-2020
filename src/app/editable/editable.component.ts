@@ -1,6 +1,6 @@
 import { Component, ContentChild, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
-import { filter, switchMapTo, take } from 'rxjs/operators';
+import { switchMapTo, take } from 'rxjs/operators';
 import { EditModeDirective } from 'src/app/directives/edit-mode.directive';
 import { ViewModeDirective } from 'src/app/directives/view-mode.directive';
 
@@ -17,7 +17,7 @@ export class EditableComponent implements OnInit {
 
   mode: 'view' | 'edit' = 'view';
 
-  constructor(private host: ElementRef ){
+  constructor(private host: ElementRef) {
   }
 
   get currentView() {
@@ -49,7 +49,7 @@ export class EditableComponent implements OnInit {
     const clickOutside$ = fromEvent(document, 'click').pipe(
       // filter(({ target }) => this.element.contains(target) === false),
       take(1)
-    )
+    );
 
     this.editMode$.pipe(
       switchMapTo(clickOutside$),

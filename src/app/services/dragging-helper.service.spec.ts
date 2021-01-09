@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { DraggingHelperService } from './dragging-helper.service';
 
 describe('DraggingHelperService', () => {

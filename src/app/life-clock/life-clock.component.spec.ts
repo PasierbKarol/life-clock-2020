@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LifeClockComponent } from './life-clock.component';
 
 describe('LifeClockComponent', () => {
@@ -8,9 +7,9 @@ describe('LifeClockComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LifeClockComponent ]
+      declarations: [LifeClockComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

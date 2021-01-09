@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WelcomeInfoComponent } from './welcome-info.component';
 
 describe('WelcomeInfoComponent', () => {
@@ -8,9 +7,9 @@ describe('WelcomeInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomeInfoComponent ]
+      declarations: [WelcomeInfoComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

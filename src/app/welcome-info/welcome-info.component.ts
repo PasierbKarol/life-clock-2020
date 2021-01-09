@@ -14,7 +14,8 @@ export class WelcomeInfoComponent implements OnInit {
   public descriptionMiddle = this.descriptions.introduction_middle;
   public descriptionFinal = this.descriptions.introduction_final;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
