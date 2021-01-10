@@ -11,26 +11,16 @@ export class DraggingHelperService {
   constructor(private goalsProvider: GoalsProviderService) {
   }
 
-  public drop(event: CdkDragDrop<LifeGoalModel[]>, placement: string , isTheSameComponent = true): void {
+  public drop(event: CdkDragDrop<LifeGoalModel[]>, placement: string ): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else if (isTheSameComponent) {
+    } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-    } else {
-      console.log('drag between components');
-      if (event.currentIndex === 0) {
-        console.log('create new list in this place');
-      }
     }
-    event.container.data.map(goal => goal.placement = placement);
-    console.log(event.previousContainer.data, 'OLD data in goals');
-    console.log(event.container.data, 'new data in goals');
-    const goalToUpdate = event.container.data[event.currentIndex];
-    console.log(goalToUpdate, 'moving goal');
 
-    this.goalsProvider.updateGoalsFromDrop(goalToUpdate, placement);
+    this.goalsProvider.updateGoalsFromDrop(event.container.data,event.currentIndex, placement);
   }
 }
