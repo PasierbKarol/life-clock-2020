@@ -1,4 +1,12 @@
-export class ContentConstants {
+export class AppConstants {
+
+  public static LIFE_CLOCK = 'life-clock';
+  public static FIVE_YEARS = 'five-years';
+  public static TWO_YEARS = 'two-years';
+  public static ONE_YEAR = 'one-year';
+  public static SIX_MONTHS = 'six-months';
+  public static THREE_MONTHS = 'three-months';
+  public static ONE_MONTH = 'one-month';
 
   private static lifeClockEN = {
     goalBlocks: [
@@ -7,14 +15,14 @@ export class ContentConstants {
           'Please drag these goals from the main list into this box.' +
           '\nPlease drag here those goals which are important in next 5 years.',
         title: '5 Years Priorities',
-        id: 'five-years'
+        id: AppConstants.FIVE_YEARS
       },
       {
         description: 'This is the list of your goals for the next 2 years. What would you like to achieve in that time? ' +
           'Please drag these goals from the main list or from 5 years list into this box.' +
           '\nPlease drag here those goals which are important in next 2 years.',
         title: '2 Years Priorities',
-        id: 'two-years'
+        id: AppConstants.TWO_YEARS
       },
       {
         description: 'This is the list of your goals for the next year. What would you like to achieve in that time? ' +
@@ -23,7 +31,7 @@ export class ContentConstants {
           'What would so important and crucial to do first? What would make you happy to accomplish and achieve?\n' +
           '\nPlease drag here those goals which are important in next year.',
         title: '1 Year Priorities',
-        id: 'one-year'
+        id: AppConstants.ONE_YEAR
       },
       {
         description: 'This is the list of your goals for the next 6 months. What would you like to achieve in that time? ' +
@@ -31,7 +39,7 @@ export class ContentConstants {
           'Do you really know what matters to you most in next 6 months? Think of it as everything else doesn\'t matter.' +
           '\nPlease drag here those goals which are important in next 6 months.',
         title: '6 Months Priorities',
-        id: 'six-months'
+        id: AppConstants.SIX_MONTHS
       },
       {
         description: 'This is the list of your goals for the next 3 months. What would you like to achieve in that time? ' +
@@ -41,7 +49,7 @@ export class ContentConstants {
           'Now you have a chance to realize it and just do it!' +
           '\nPlease drag here those goals which are important in next 3 months.',
         title: '3 Months Priorities',
-        id: 'three-months'
+        id: AppConstants.THREE_MONTHS
       },
       {
         description: 'This is the last box. Most important things you ever thought of.' +
@@ -49,7 +57,7 @@ export class ContentConstants {
           'Please drag these goals from any lists above into this box. Remember you can reorganise it all.' +
           '\nPlease drag here those goals which are important in next month.',
         title: '1 Month Priorities',
-        id: 'one-month'
+        id: AppConstants.ONE_MONTH
       },
     ],
     introduction_title: 'Life Goals Priorities',
@@ -105,21 +113,21 @@ export class ContentConstants {
     goalBlocks: [
       {
         description:
-          'To jest lista Twoich celów na kolejne 5 lat. ' + ContentConstants.importancePL +
+          'To jest lista Twoich celów na kolejne 5 lat. ' + AppConstants.importancePL +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 5 latach.',
         title: 'Cele na następne 5 lat',
         id: 'five-years'
       },
       {
         description:
-          'To jest lista Twoich celów na kolejne 2 lata. Ponownie zadaj sobie następujące pytania. ' + ContentConstants.importancePL +
+          'To jest lista Twoich celów na kolejne 2 lata. Ponownie zadaj sobie następujące pytania. ' + AppConstants.importancePL +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 2 latach.',
         title: 'Cele na następne 2 lata',
         id: 'two-years'
       },
       {
         description:
-          'Ponownie zadaj sobie następujące pytania. ' + ContentConstants.importancePL +
+          'Ponownie zadaj sobie następujące pytania. ' + AppConstants.importancePL +
           '\nNaprawdę dobrze się zastanów, co jest najważniejsze i ponownie zreorganizuj wszystkie swoje cele\n' +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnego roku.',
         title: 'Cele na następny rok',
@@ -127,7 +135,7 @@ export class ContentConstants {
       },
       {
         description:
-          'Ponownie zadaj sobie następujące pytania. ' + ContentConstants.importancePL +
+          'Ponownie zadaj sobie następujące pytania. ' + AppConstants.importancePL +
           '\n 6 miesięcy to niedaleka przyszłość. Podejdź do tego tak, jakby nic innego nie miało znaczenia. ' +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 6 miesięcy.',
         title: 'Cele na następne 6 miesięcy',
@@ -139,14 +147,14 @@ export class ContentConstants {
           'Co przyniosłoby największe spełnienie i cudowne wspomnienia?' +
           'Wybierz rzeczy, które będą Twoimi największymi marzeniami! Takie, których wykonania nie pożałujesz nigdy. ' +
           'Teraz masz szansę naprawdę to wykonać, bo wiesz, co jest najważniejsze!!!\n' +
-          ContentConstants.importancePL +
+          AppConstants.importancePL +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 3 miesięcy.',
         title: 'Cele na następne 3 miesiące',
         id: 'three-months'
       },
       {
         description: 'Ostatni podział. Tutaj powinno wylądować wszystko, co spełni Twoje największe marzenia. .' +
-        ContentConstants.importancePL +
+        AppConstants.importancePL +
         '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnego miesiąca.',
         title: 'Cele na kolejny miesiąc',
         id: 'one-month'

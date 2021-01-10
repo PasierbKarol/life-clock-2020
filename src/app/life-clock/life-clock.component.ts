@@ -3,7 +3,7 @@ import { Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/co
 import { LifeGoalModel } from 'src/app/models/life-goal.model';
 import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 import { DraggingHelperService } from '../services/dragging-helper.service';
-import { ContentConstants } from './content-constants';
+import { AppConstants } from 'src/app/app-constants';
 
 @Component({
   selector: 'app-life-clock',
@@ -13,7 +13,7 @@ import { ContentConstants } from './content-constants';
 export class LifeClockComponent implements OnChanges, OnInit {
 
   @ViewChild('lifeList', {static: false}) public lifeList: ElementRef;
-  private descriptions = ContentConstants.getDescriptions('PL');
+  private descriptions = AppConstants.getDescriptions('PL');
   public goalsTexts: any = this.descriptions.goalBlocks;
   public listInstructions: string = this.descriptions.list_instructions;
   public summary: string = this.descriptions.final_summary;
@@ -28,7 +28,7 @@ export class LifeClockComponent implements OnChanges, OnInit {
   }
 
   public onDrop(event: CdkDragDrop<LifeGoalModel[]>) {
-    this.draggingService.drop(event);
+    this.draggingService.drop(event, AppConstants.LIFE_CLOCK);
   }
 
   public ngOnChanges() {
@@ -38,7 +38,7 @@ export class LifeClockComponent implements OnChanges, OnInit {
 
   public ngOnInit(): void {
     this.goalsProvider.goals$.subscribe(allGoals => {
-      this.lifeGoals = allGoals.map(goal => goal);
+      this.lifeGoals = allGoals.filter(goal => goal.placement === AppConstants.LIFE_CLOCK);
     });
   }
 
@@ -48,7 +48,7 @@ export class LifeClockComponent implements OnChanges, OnInit {
 
   public listSubmitted(goalsFromView: any): void {
     this.areGoalsSubmitted = true;
-    this.goalsProvider.createGoalsFromList(goalsFromView, 'LifeClockComponent');
+    this.goalsProvider.createGoalsFromList(goalsFromView, AppConstants.LIFE_CLOCK);
     this.lifeList.nativeElement.value = '';
   }
 

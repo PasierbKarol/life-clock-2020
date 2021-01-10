@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContentConstants } from '../life-clock/content-constants';
+import { AppConstants } from 'src/app/app-constants';
 
 @Component({
   selector: 'app-welcome-info',
@@ -8,7 +8,7 @@ import { ContentConstants } from '../life-clock/content-constants';
 })
 export class WelcomeInfoComponent implements OnInit {
 
-  private descriptions = ContentConstants.getDescriptions('PL');
+  private descriptions = AppConstants.getDescriptions('PL');
   public title = this.descriptions.introduction_title;
   public descriptionStart = this.descriptions.introduction;
   public descriptionMiddle = this.descriptions.introduction_middle;

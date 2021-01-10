@@ -29,8 +29,13 @@ export class GoalsProviderService {
     this.goals.next(lifeGoalsList);
   }
 
-  public updateGoalsFromDrop(goals: LifeGoalModel[]): void {
-    this.goals.next(goals);
+  public updateGoalsFromDrop(goalToUpdate: LifeGoalModel, placement): void {
+    const updatedGoals = this.goals.value.concat();
+    console.log(updatedGoals, 'updated goals')
+    const indexToUpdate = updatedGoals.findIndex(goal => goal.name === goalToUpdate.name);
+    updatedGoals[indexToUpdate].placement = placement;
+    console.log(updatedGoals, 'updated goals AFTER UPDATE')
+    this.goals.next(updatedGoals);
   }
 
   public clearGoals(): void {
