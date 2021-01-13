@@ -14,6 +14,7 @@ import { LifeClockComponent } from './life-clock/life-clock.component';
 import { MaterialModule } from './material/material.module';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
+import { CompletedGoalsComponent } from './completed-goals/completed-goals.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
     DraggableGoalComponent,
     ViewModeDirective,
     EditModeDirective,
-    EditableComponent
+    EditableComponent,
+    CompletedGoalsComponent
   ],
   imports: [
     BrowserModule,

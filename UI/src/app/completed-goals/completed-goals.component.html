@@ -1,0 +1,7 @@
+<label for="name">Twoje Imię</label>
+<input type="text" id="name" name="name" [(ngModel)]="personalDetails.name" />
+<label for="surname">Twoje Nazwisko</label>
+<input type="text" name="surname"  id="surname"  [(ngModel)]="personalDetails.surname">
+<label for="name">Twój Email</label>
+<input type="email" name="email"  id="email" [(ngModel)]="personalDetails.email">
+<button type="submit" (click)="submitGoals()">Wyślij</button>
