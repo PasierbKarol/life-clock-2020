@@ -1,4 +1,5 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,12 +36,14 @@ import { CompletedGoalsComponent } from './completed-goals/completed-goals.compo
     BrowserAnimationsModule,
     MaterialModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     DragDropModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
