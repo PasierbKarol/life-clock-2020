@@ -1,6 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { AppConstants } from 'src/app/app-constants';
 import { LifeGoalModel } from 'src/app/models/life-goal.model';
 import { DraggingHelperService } from 'src/app/services/dragging-helper.service';
 import { GoalsProviderService } from 'src/app/services/goals-provider.service';
