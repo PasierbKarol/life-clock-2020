@@ -35,17 +35,12 @@
     </mat-grid-list>
 
   </div>
-  <hr *ngIf="areGoalsSubmitted">
-  <div>
-    <p id="finalDescription" class="description goals">{{summary}}</p>
-    <app-completed-goals></app-completed-goals>
+  <div *ngIf="areGoalsSubmitted && currentlyVisibleSection === 6">
+    <hr>
+    <app-completed-goals [summary]="summary"></app-completed-goals>
   </div>
 
-  <div>
-    <button mat-raised-button color="accent" id="goalsCompleteButton" type="submit" name="goalsComplete">Zatwierdź
-      Cele
-    </button>
-  </div>
+
 
   <br/>
   <div id="goalsBtnDiv">

@@ -32,7 +32,6 @@ export class LifeClockComponent implements OnChanges, OnInit {
   }
 
   public ngOnChanges() {
-    // this.goalsProvider.clearGoals();
     this.lifeGoals = [];
   }
 

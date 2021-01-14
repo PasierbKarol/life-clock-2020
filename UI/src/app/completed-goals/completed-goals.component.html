@@ -1,7 +1,13 @@
-<label for="name">Twoje Imię</label>
-<input type="text" id="name" name="name" [(ngModel)]="personalDetails.name" />
-<label for="surname">Twoje Nazwisko</label>
-<input type="text" name="surname"  id="surname"  [(ngModel)]="personalDetails.surname">
-<label for="name">Twój Email</label>
-<input type="email" name="email"  id="email" [(ngModel)]="personalDetails.email">
-<button mat-raised-button color="accent"  type="submit" (click)="submitGoals()">Wyślij</button>
+<p id="finalDescription" class="description goals">{{summary}}</p>
+
+<div id="final-section">
+  <label for="name">Twoje Imię</label>
+  <input type="text" id="name" name="name" [(ngModel)]="personalDetails.name"/>
+  <label for="surname">Twoje Nazwisko</label>
+  <input type="text" name="surname" id="surname" [(ngModel)]="personalDetails.surname">
+  <label for="email">Twój Email</label>
+  <input type="email" name="email" id="email" [(ngModel)]="personalDetails.email">
+  <button mat-raised-button color="accent" id="goalsCompleteButton" type="submit" (click)="submitGoals()">
+    Zatwierdź Cele
+  </button>
+</div>

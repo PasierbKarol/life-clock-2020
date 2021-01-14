@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PersonalDetailsModel } from 'src/app/models/personal-details.model';
 import { ResponseModel } from 'src/app/models/response.model';
 import { BackendService } from 'src/app/services/backend.service';
@@ -11,6 +11,7 @@ import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 })
 export class CompletedGoalsComponent implements OnInit {
 
+  @Input() public summary: string;
   public personalDetails: PersonalDetailsModel = new PersonalDetailsModel();
 
   public constructor(
