@@ -1,5 +1,9 @@
 @import '../draggable';
 
+.description {
+  font-size: large;
+}
+
 #clock-goals-section {
   margin: 0 25px 25px 0;
   vertical-align: top;
@@ -11,7 +15,7 @@
   background-color: #eaeaea;
   resize: none;
   display: block;
-  width: 100%;
+  width: 70%;
   margin: 0 0 2em 0;
   padding: 1em;
 }
@@ -22,11 +26,16 @@
 
 .mainContent {
   height: 100%;
+  width: 70%;
+}
+
+#lifeListAccordion {
+  width: 70%;
 }
 
 #draggable-goals-list {
   border: solid deepskyblue 1px;
-  width: 100%;
+  width: 70%;
 }
 
 .clock-goals-list {
