@@ -34,6 +34,10 @@ export class GoalsBoxComponent implements OnChanges, OnInit {
     this.goalsProvider.goals$.subscribe(allGoals => {
       this.lifeGoals = allGoals.filter(goal => goal.placement === this.blockId);
     });
+
+    this.goalsProvider.sectionsCompleted$.subscribe(sectionID =>
+      this.isSectionCompleted = this.index < sectionID
+    )
   }
 
   public onDrop(event: CdkDragDrop<LifeGoalModel[]>) {

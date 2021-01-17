@@ -10,6 +10,8 @@ export class GoalsProviderService {
   public goals: BehaviorSubject<Array<LifeGoalModel>>;
   public goals$;
   public areGoalsInLocalStorage: boolean = false;
+  public currentlyVisibleSection: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public sectionsCompleted$ = this.currentlyVisibleSection.asObservable();
 
   constructor() {
     this.readGoalsFromLocalStorage();
@@ -39,6 +41,8 @@ export class GoalsProviderService {
 
   public clearGoals(): void {
     this.saveGoalsToLocalStorage([]);
+    this.currentlyVisibleSection.next(0);
+    this.saveSectionsToStorage();
   }
 
   public updateGoal(goalNew: LifeGoalModel, goalOld: LifeGoalModel) {
@@ -50,17 +54,28 @@ export class GoalsProviderService {
 
   private saveGoalsToLocalStorage(goalsToSaveAndSend: Array<LifeGoalModel>): void {
     localStorage.setItem('LifeClock', JSON.stringify(goalsToSaveAndSend));
-    console.log(goalsToSaveAndSend, 'saved goals');
     this.goals.next(goalsToSaveAndSend);
   }
 
-  readGoalsFromLocalStorage(): void {
+  private readGoalsFromLocalStorage(): void {
     const localStorageGoals = JSON.parse(localStorage.getItem('LifeClock'));
-    console.log(localStorageGoals, 'read goals');
     this.areGoalsInLocalStorage = !!localStorageGoals;
     this.goals = new BehaviorSubject<Array<LifeGoalModel>>(!!localStorageGoals ? localStorageGoals : []);
-    console.log(this.goals.value, 'read goals');
     this.goals$ = this.goals.asObservable();
     this.goals.next(this.goals.value);
+  }
+
+  public updateCompletedSections(sectionID: number): void {
+    this.currentlyVisibleSection.next(sectionID);
+    this.saveSectionsToStorage();
+  }
+
+  private saveSectionsToStorage(): void {
+    localStorage.setItem('LifeClockSectionID', JSON.stringify(this.currentlyVisibleSection.value.toString()));
+  }
+
+  public readSectionsFromStorage(): void {
+    const localStorageVisibleSection = JSON.parse(localStorage.getItem('LifeClockSectionID'));
+    this.currentlyVisibleSection.next(Number.parseInt(!!localStorageVisibleSection ? localStorageVisibleSection : '0'))
   }
 }
