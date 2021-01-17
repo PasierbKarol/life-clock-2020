@@ -7,17 +7,18 @@ import { LifeGoalModel } from 'src/app/models/life-goal.model';
 })
 export class GoalsProviderService {
 
-  public goals: BehaviorSubject<Array<LifeGoalModel>> = new BehaviorSubject<Array<LifeGoalModel>>([]);
-  public goals$ = this.goals.asObservable();
+  public goals: BehaviorSubject<Array<LifeGoalModel>>;
+  public goals$;
+  public areGoalsInLocalStorage: boolean = false;
 
   constructor() {
+    this.readGoalsFromLocalStorage();
   }
 
   public createGoalsFromList(goalsFromView: any, placement: string): void {
     let rawGoalsToUpdate: string[] = goalsFromView.split(/\n/g);
     rawGoalsToUpdate = rawGoalsToUpdate.filter(v => v !== '');
-    // console.log(goalsFromView, 'goalsFromView to update');
-    // console.log(rawGoalsToUpdate, 'goals to update');
+
     const lifeGoalsList = rawGoalsToUpdate.map(goal => {
       let lifeGoal = new LifeGoalModel();
       lifeGoal.id = '';
@@ -25,24 +26,41 @@ export class GoalsProviderService {
       lifeGoal.placement = placement;
       return lifeGoal;
     });
-    console.log(lifeGoalsList, 'goals as objects');
-    this.goals.next(lifeGoalsList);
+
+    this.saveGoalsToLocalStorage(lifeGoalsList);
   }
 
   public updateGoalsFromDrop(updatedContainerGoals: LifeGoalModel[], index: number, placement): void {
     let updatedGoals = this.goals.value.concat();
     updatedContainerGoals[index].placement = placement;
     updatedGoals = updatedContainerGoals.concat(updatedGoals.filter(goal => goal.placement !== placement));
-    this.goals.next(updatedGoals);
+    this.saveGoalsToLocalStorage(updatedGoals);
   }
 
   public clearGoals(): void {
-    this.goals.next([]);
+    this.saveGoalsToLocalStorage([]);
   }
 
   public updateGoal(goalNew: LifeGoalModel, goalOld: LifeGoalModel) {
     let updatedGoals = this.goals.value;
     const index = updatedGoals.findIndex(name => name === goalOld);
     updatedGoals[index] = goalNew;
+    this.saveGoalsToLocalStorage(updatedGoals);
+  }
+
+  private saveGoalsToLocalStorage(goalsToSaveAndSend: Array<LifeGoalModel>): void {
+    localStorage.setItem('LifeClock', JSON.stringify(goalsToSaveAndSend));
+    console.log(goalsToSaveAndSend, 'saved goals');
+    this.goals.next(goalsToSaveAndSend);
+  }
+
+  readGoalsFromLocalStorage(): void {
+    const localStorageGoals = JSON.parse(localStorage.getItem('LifeClock'));
+    console.log(localStorageGoals, 'read goals');
+    this.areGoalsInLocalStorage = !!localStorageGoals;
+    this.goals = new BehaviorSubject<Array<LifeGoalModel>>(!!localStorageGoals ? localStorageGoals : []);
+    console.log(this.goals.value, 'read goals');
+    this.goals$ = this.goals.asObservable();
+    this.goals.next(this.goals.value);
   }
 }

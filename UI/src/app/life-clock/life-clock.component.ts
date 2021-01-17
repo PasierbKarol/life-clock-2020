@@ -39,6 +39,10 @@ export class LifeClockComponent implements OnChanges, OnInit {
     this.goalsProvider.goals$.subscribe(allGoals => {
       this.lifeGoals = allGoals.filter(goal => goal.placement === AppConstants.LIFE_CLOCK);
     });
+
+    if(this.goalsProvider.areGoalsInLocalStorage) {
+      this.areGoalsSubmitted = true;
+    }
   }
 
   public sectionCompleted(id: number): void {
@@ -52,9 +56,9 @@ export class LifeClockComponent implements OnChanges, OnInit {
   }
 
   public startOver(): void {
-    this.lifeGoals = [];
+    this.goalsProvider.createGoalsFromList([], AppConstants.LIFE_CLOCK);
     this.areGoalsSubmitted = false;
     this.currentlyVisibleSection = 0;
   }
-
+  
 }
