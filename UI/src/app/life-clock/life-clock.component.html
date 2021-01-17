@@ -1,6 +1,6 @@
 <div id="mainContent">
   <mat-accordion id="lifeListAccordion">
-    <mat-expansion-panel [expanded]="areGoalsSubmitted === false">
+    <mat-expansion-panel [expanded]="!areGoalsSubmitted">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h3>Określ Swoje Cele:</h3>
@@ -39,9 +39,6 @@
     <hr>
     <app-completed-goals [summary]="summary"></app-completed-goals>
   </div>
-
-
-
   <br/>
   <div id="goalsBtnDiv">
     <button mat-raised-button color="primary" id="goalsFixedButton" type="button" name="goalsFixedButton">_</button>

@@ -1,9 +1,9 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { AppConstants } from 'src/app/app-constants';
 import { LifeGoalModel } from 'src/app/models/life-goal.model';
 import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 import { DraggingHelperService } from '../services/dragging-helper.service';
-import { AppConstants } from 'src/app/app-constants';
 
 @Component({
   selector: 'app-life-clock',
@@ -19,7 +19,7 @@ export class LifeClockComponent implements OnChanges, OnInit {
   public summary: string = this.descriptions.final_summary;
   public currentlyVisibleSection: number = 0;
   public lifeGoals: LifeGoalModel[] = [];
-  public areGoalsSubmitted: boolean = false;
+  public areGoalsSubmitted: boolean;
 
   public constructor(
     private draggingService: DraggingHelperService,
@@ -40,12 +40,10 @@ export class LifeClockComponent implements OnChanges, OnInit {
       this.lifeGoals = allGoals.filter(goal => goal.placement === AppConstants.LIFE_CLOCK);
     });
 
-    if(this.goalsProvider.areGoalsInLocalStorage) {
-      this.areGoalsSubmitted = true;
-    }
+    this.areGoalsSubmitted = !!this.goalsProvider.areGoalsInLocalStorage;
 
-    this.goalsProvider.readSectionsFromStorage();
     this.goalsProvider.sectionsCompleted$.subscribe(section => this.currentlyVisibleSection = section);
+    this.goalsProvider.readSectionsFromStorage();
   }
 
   public sectionCompleted(id: number): void {
@@ -64,6 +62,5 @@ export class LifeClockComponent implements OnChanges, OnInit {
     this.areGoalsSubmitted = false;
     this.currentlyVisibleSection = 0;
   }
-
 
 }

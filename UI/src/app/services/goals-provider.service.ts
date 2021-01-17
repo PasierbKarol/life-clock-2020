@@ -40,7 +40,7 @@ export class GoalsProviderService {
   }
 
   public clearGoals(): void {
-    this.saveGoalsToLocalStorage([]);
+    localStorage.clear();
     this.currentlyVisibleSection.next(0);
     this.saveSectionsToStorage();
   }
