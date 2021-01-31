@@ -36,7 +36,7 @@ export class GoalsBoxComponent implements OnChanges, OnInit {
     });
 
     this.goalsProvider.sectionsCompleted$.subscribe(sectionID =>
-      this.isSectionCompleted = this.index < sectionID
+      this.isSectionCompleted = Number.parseInt(this.index) < sectionID
     )
   }
 
