@@ -1,8 +1,9 @@
 @import '../draggable';
 
 .description {
-  font-size: large;
-  width: 60%;
+  font-size: larger;
+  width: 70%;
+  margin: 10px auto;
 }
 
 #clock-goals-section {
@@ -16,7 +17,7 @@
   background-color: #eaeaea;
   resize: none;
   display: block;
-  width: 70%;
+  width: 95%;
   margin: 0 0 2em 0;
   padding: 1em;
 }
@@ -37,7 +38,8 @@
 
 #draggable-goals-list {
   border: solid deepskyblue 1px;
-  width: 70%;
+  width: 100%;
+  margin: auto;
 }
 
 .clock-goals-list {
@@ -47,6 +49,13 @@
   border-radius: 4px;
   overflow: hidden;
   display: block;
+}
+
+#cleanGoalsButton {
+  margin: 20px 0 20px 10px;
+  width: 25% !important;
+  padding: 1em;
+  font-size: x-large;
 }
 
 
