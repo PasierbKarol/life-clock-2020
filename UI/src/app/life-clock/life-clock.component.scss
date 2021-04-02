@@ -21,12 +21,12 @@
   padding: 1em;
 }
 
-#goal-boxes-section {
-  min-height: 1500px;
-  height: 100%;
-}
-
-
+#goal-boxes-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: fit-content(100%);
+    grid-gap: 50px;
+  }
 
 #lifeListAccordion {
   width: 70%;
@@ -35,7 +35,6 @@
 
 #draggable-goals-list {
   border: solid deepskyblue 1px;
-  width: 70%;
 }
 
 .clock-goals-list {
@@ -43,8 +42,6 @@
   min-height: 60px;
   background: white;
   border-radius: 4px;
-  //overflow: hidden;
-  //display: block;
 }
 
 .grid-tile {

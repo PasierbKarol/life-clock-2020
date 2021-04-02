@@ -1,16 +1,18 @@
-<mat-accordion>
-  <mat-expansion-panel [expanded]="isSectionCompleted === false" (opened)="isSectionCompleted = false"
-                       (closed)="isSectionCompleted = true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h2 [id]="blockId + '-title'">{{blockTitle}}</h2>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <div class="goals-box-description">
-      <p>{{!!blockDescription ? blockDescription : 'Trwa ładowanie opisu...'}}</p>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+<div>
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="isSectionCompleted === false" (opened)="isSectionCompleted = false"
+                         (closed)="isSectionCompleted = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2 [id]="blockId + '-title'">{{blockTitle}}</h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="goals-box-description">
+        <p>{{!!blockDescription ? blockDescription : 'Trwa ładowanie opisu...'}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
 <div [id]="blockId" class="goals-block clock-goals-list" cdkDropList
      [cdkDropListData]="lifeGoals"
      (cdkDropListDropped)="onDrop($event)">
@@ -21,6 +23,7 @@
   </div>
 </div>
 
-<button mat-raised-button color="primary" *ngIf="!isSectionCompleted" [id]="blockId + '-submit'" (click)="completeSection()" [name]="blockId"
+<button mat-raised-button color="primary" *ngIf="!isSectionCompleted" [id]="blockId + '-submit'"
+        (click)="completeSection()" [name]="blockId"
         class="buttons">Kontynuuj
 </button>

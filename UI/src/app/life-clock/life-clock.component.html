@@ -13,6 +13,7 @@
       <p class="description">{{listInstructions}}</p>
     </mat-expansion-panel>
   </mat-accordion>
+  <!--GOALS SECTION-->
   <div id="clock-goals-section" cdkDropListGroup>
     <div id="draggable-goals-list" *ngIf="areGoalsSubmitted" class="noselect clock-goals-list" cdkDropList
          (cdkDropListDropped)="onDrop($event)" [cdkDropListData]="lifeGoals">
@@ -24,16 +25,19 @@
               (click)="startOver()">Zacznij od Nowa
       </button>
     </div>
-    <mat-grid-list *ngIf="areGoalsSubmitted" id="goal-boxes-section" cols="2" rowHeight="fit">
-      <mat-grid-tile *ngFor="let goal of goalsTexts; index as index" class="grid-tile">
+    <div class="section-divider"></div>
+    <div *ngIf="areGoalsSubmitted" id="goal-boxes-grid" cols="2" rowHeight="fit">
+      <div *ngFor="let goal of goalsTexts; index as index" class="grid-tile">
         <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
                        [blockDescription]="goal.description" [index]="index"
                        (sectionSubmitted)="sectionCompleted($event)"
                        *ngIf="index <= currentlyVisibleSection"></app-goals-box>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </div>
 
   </div>
+<!--  <div class="section-divider"></div>-->
+  <!--COMPLETED GOALS SECTION-->
   <div *ngIf="areGoalsSubmitted && currentlyVisibleSection === 6">
     <hr>
     <app-completed-goals [summary]="summary"></app-completed-goals>

@@ -1,16 +1,13 @@
 @import '../draggable';
 
 .goals-block {
-  min-height: 150px;
-  height: 100%;
-  width: 90%;
+  min-height: 100px;
   border: red 2px solid;
   border-radius: 15px;
 }
 
 .goals-box-description {
   min-height: 100px;
-  width: 90%;
   font-size: large;
 }
 
