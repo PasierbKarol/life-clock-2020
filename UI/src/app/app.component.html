@@ -1,10 +1,20 @@
-<div class="navbar">
+<div class="container">
+  <header>
+    <h1>Life Clock</h1>
+  </header>
   <app-navigation-bar></app-navigation-bar>
-</div>
-<div class="container" role="main">
-  <div id="wrapper" class="ui-widget-content">
-    <main id="mainMain">
+  <main>
+    <div id="wrapper" role="main" class="ui-widget-content">
       <router-outlet></router-outlet>
-    </main>
-  </div>
+    </div>
+  </main>
+  <aside>
+    <!-- Sidebar -->
+  </aside>
+
+  <footer>
+    <span>
+        Copyright 2020-2021
+    </span>
+  </footer>
 </div>

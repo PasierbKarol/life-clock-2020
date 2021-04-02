@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* main wrapper for all the site content*/
-#wrapper {
-  width: 70%;
-  margin: 5% auto 0 auto;
-  position: relative;
-  background-color: white;
-  padding: 2%;
-  overflow: visible;
-  font-size: large;
-}
+//#wrapper {
+//  width: 70%;
+//  margin: 5% auto 0 auto;
+//  position: relative;
+//  background-color: white;
+//  padding: 2%;
+//  overflow: visible;
+//  font-size: large;
+//}
 
 p {
   text-indent: 2.5em;
@@ -38,4 +38,67 @@ p {
 }*/
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #E4F0FF;
+  width: 70%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 12px;
+  grid-template-areas:
+    "header header header"
+    "nav content side"
+    "footer footer footer";
+  height: 100vh;
+}
+
+header {
+  color: white;
+  font-size: 14px;
+  grid-area: header;
+  text-align: center;
+  //background-color: #FA7D44;
+}
+
+app-navigation-bar {
+  grid-area: nav;
+  margin-left: 0.6rem;
+  background-color: #90dcff;
+}
+
+main {
+  grid-area: content;
+  background-color: #f8f8f1;
+  padding: 25px;
+}
+
+aside {
+  grid-area: side;
+  margin-right: 0.6rem;
+  background-color: #90dcff;
+}
+
+footer {
+  grid-area: footer;
+  background-color: #90dcff;
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+}
+
+ul li {
+  color: white;
+}
+ul li a {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 15px;
+}
