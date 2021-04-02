@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { PersonalDetailsModel } from 'src/app/models/personal-details.model';
 import { ResponseModel } from 'src/app/models/response.model';
 import { BackendService } from 'src/app/services/backend.service';
@@ -34,5 +35,15 @@ export class CompletedGoalsComponent implements OnInit {
         response.responseJSON = r.responseJSON;
       });
       console.log(response, 'response');
+  }
+
+  public emailInput = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    if (this.emailInput.hasError('required')) {
+      return 'Musisz podać email, aby otrzymać rezultaty pocztą';
+    }
+
+    return this.emailInput.hasError('email') ? 'Podany email nie jest właściwy' : '';
   }
 }

@@ -1,3 +1,24 @@
 #finalDescription {
+  margin: 0 auto;
   width: 60%;
+  font-size: larger;
+}
+
+.mat-card-title {
+  //margin: 0 auto !important;
+  font-size: xx-large;
+}
+
+mat-form-field {
+  width: 30%;
+}
+
+#goalsCompleteButton {
+  width: 30%;
+  height: 50px;
+  font-size: larger;
+}
+
+.final-section-card {
+  width: 100% !important;
 }
