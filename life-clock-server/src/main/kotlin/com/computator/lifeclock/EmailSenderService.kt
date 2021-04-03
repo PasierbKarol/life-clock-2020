@@ -33,7 +33,7 @@ class EmailConfiguration {
 internal interface EmailService {
   fun sendMessageWithAttachment(to: String,
                                 subject: String,
-                                text: String,
+                                text: ExportToEmailRequest,
                                 pathToAttachment: String)
 
   fun sendHtmlMessage(to: String,
@@ -70,7 +70,7 @@ class EmailServiceImpl : EmailService {
 
   override fun sendMessageWithAttachment(to: String,
                                          subject: String,
-                                         text: String,
+                                         text: ExportToEmailRequest,
                                          pathToAttachment: String) {
     try {
       val message = emailSender.createMimeMessage()
@@ -79,10 +79,10 @@ class EmailServiceImpl : EmailService {
       helper.setTo(to)
       helper.setFrom(sender)
       helper.setSubject(subject)
-      helper.setText(text)
+      helper.setText(text.personalDetails.name + " " + text.personalDetails.surname + ", Twoje Cele: " + text.goals)
 
-      val file = FileSystemResource(File(pathToAttachment))
-      helper.addAttachment("Invoice", file)
+//      val file = FileSystemResource(File(pathToAttachment))
+//      helper.addAttachment("Invoice", file)
 
       emailSender.send(message)
     } catch (e: MessagingException) {

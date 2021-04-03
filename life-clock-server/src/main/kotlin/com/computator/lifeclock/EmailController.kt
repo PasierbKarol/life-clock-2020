@@ -3,12 +3,10 @@ package com.computator.lifeclock
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import javax.validation.ValidationException
 
 @RestController
 class EmailController {
@@ -18,14 +16,16 @@ class EmailController {
 
   val addressee: String = "pasierbkarol@gmail.com"
 
-  @PostMapping("/sendSimpleEmail")
-  fun sendSimpleEmail(@RequestBody goals: LifeClockGoals, bindingResult: BindingResult): ResponseEntity<*> {
-    if(bindingResult.hasErrors()) {
-    throw ValidationException()
-    }
+  @CrossOrigin(origins = ["http://localhost:4200"])
+//@CrossOrigin(origins = ["http://localhost:8080"])
+  @PostMapping("/export-goals-email")
+  fun sendSimpleEmail(@RequestBody emailRequest: ExportToEmailRequest/*, bindingResult: BindingResult*/): ResponseEntity<*> {
+//    if(bindingResult.hasErrors()) {
+//    throw ValidationException()
+//    }
 
     try {
-      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", "Hello! This is simple email", "")
+      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
     } catch (e: Exception) {
       println(e)
       return ResponseEntity<String>("Bad request, email wasn't sent", HttpStatus.BAD_REQUEST)
