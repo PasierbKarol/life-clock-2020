@@ -5,7 +5,6 @@
 }
 
 .mat-card-title {
-  //margin: 0 auto !important;
   font-size: xx-large;
 }
 
@@ -13,12 +12,10 @@ mat-form-field {
   width: 30%;
 }
 
-#goalsCompleteButton {
+#goals-completed {
   width: 30%;
   height: 50px;
-  font-size: larger;
+  font-size: x-large;
+  //margin: 25px 0;
 }
 
-.final-section-card {
-  width: 100% !important;
-}

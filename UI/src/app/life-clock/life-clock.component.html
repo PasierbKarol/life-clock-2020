@@ -1,49 +1,50 @@
-  <mat-accordion id="lifeListAccordion">
-    <mat-expansion-panel [expanded]="!areGoalsSubmitted">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h3>Określ Swoje Cele:</h3>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <textarea id="lifeList" #lifeList required
-                placeholder="Wypisz lub wklej tutaj swoje cele oddzielając je przyciskiem Enter."></textarea>
-      <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete"
-              (click)="listSubmitted(lifeList.value)">Zatwierdź listę
-      </button>
-      <p class="description">{{listInstructions}}</p>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <!--GOALS SECTION-->
-  <div id="clock-goals-section" cdkDropListGroup>
-    <div id="draggable-goals-list" *ngIf="areGoalsSubmitted" class="noselect clock-goals-list" cdkDropList
-         (cdkDropListDropped)="onDrop($event)" [cdkDropListData]="lifeGoals">
-      <div class="draggable-goal" *ngFor="let lifeGoal of lifeGoals" cdkDrag>
-        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-        <app-draggable-goal [lifeGoal]="lifeGoal"></app-draggable-goal>
-      </div>
-      <button mat-raised-button color="warn" id="cleanGoalsButton" name="cleanGoalsButton"
-              (click)="startOver()">Zacznij od Nowa
-      </button>
-    </div>
-    <div class="section-divider"></div>
-    <div *ngIf="areGoalsSubmitted" id="goal-boxes-grid" cols="2" rowHeight="fit">
-      <div *ngFor="let goal of goalsTexts; index as index" class="grid-tile">
-        <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
-                       [blockDescription]="goal.description" [index]="index"
-                       (sectionSubmitted)="sectionCompleted($event)"
-                       *ngIf="index <= currentlyVisibleSection"></app-goals-box>
-      </div>
+<mat-accordion id="lifeListAccordion">
+  <mat-expansion-panel [expanded]="!areGoalsSubmitted">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Określ Swoje Cele:</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <textarea id="lifeList" #lifeList required
+              placeholder="Wypisz lub wklej tutaj swoje cele oddzielając je przyciskiem Enter."></textarea>
+    <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete"
+            (click)="listSubmitted(lifeList.value)">Zatwierdź listę
+    </button>
+    <p class="description">{{listInstructions}}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+<!--GOALS SECTION-->
+<div id="clock-goals-section" cdkDropListGroup>
+  <div id="draggable-goals-list" *ngIf="areGoalsSubmitted" class="noselect clock-goals-list" cdkDropList
+       (cdkDropListDropped)="onDrop($event)" [cdkDropListData]="lifeGoals">
+    <div class="draggable-goal" *ngFor="let lifeGoal of lifeGoals" cdkDrag>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <app-draggable-goal [lifeGoal]="lifeGoal"></app-draggable-goal>
     </div>
 
   </div>
+  <button mat-raised-button color="warn" id="clear-goals" name="cleanGoalsButton"
+          (click)="startOver()">Zacznij od Nowa
+  </button>
+  <div class="section-divider"></div>
+  <div *ngIf="areGoalsSubmitted" id="goal-boxes-grid" cols="2" rowHeight="fit">
+    <div *ngFor="let goal of goalsTexts; index as index" class="grid-tile">
+      <app-goals-box [blockId]="goal.id" [blockTitle]="goal.title"
+                     [blockDescription]="goal.description" [index]="index"
+                     (sectionSubmitted)="sectionCompleted($event)"
+                     *ngIf="index <= currentlyVisibleSection"></app-goals-box>
+    </div>
+  </div>
+
+</div>
 <!--  <div class="section-divider"></div>-->
-  <!--COMPLETED GOALS SECTION-->
-  <div *ngIf="areGoalsSubmitted && currentlyVisibleSection === 6">
-    <hr>
-    <app-completed-goals [summary]="summary"></app-completed-goals>
-  </div>
-  <br/>
-  <div id="goalsBtnDiv">
-    <button mat-raised-button color="primary" id="goalsFixedButton" type="button" name="goalsFixedButton">_</button>
-    <p>Wróć na górę strony</p>
-  </div>
+<!--COMPLETED GOALS SECTION-->
+<div *ngIf="areGoalsSubmitted && currentlyVisibleSection === 6">
+  <hr>
+  <app-completed-goals [summary]="summary"></app-completed-goals>
+</div>
+<br/>
+<div id="goalsBtnDiv">
+  <button mat-raised-button color="primary" id="goalsFixedButton" type="button" name="goalsFixedButton">_</button>
+  <p>Wróć na górę strony</p>
+</div>

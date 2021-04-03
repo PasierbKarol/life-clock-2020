@@ -24,11 +24,9 @@
                [(ngModel)]="personalDetails.email" required>
         <mat-error *ngIf="emailInput.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="accent" id="goalsCompleteButton" type="submit" (click)="submitGoals()">
+      <button mat-raised-button color="accent" id="goals-completed" type="submit" (click)="submitGoals()">
         Zatwierdź Cele
       </button>
-    </mat-card-actions>
+    </mat-card-content>
   </mat-card>
 </div>

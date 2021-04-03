@@ -1,15 +1,19 @@
 <nav class="navbar">
   <a href="https://www.karolpasierb.pl">
-    <div>Strona Główna</div>
+    <button mat-raised-button color="primary" class="nav-button">Strona Główna</button>
   </a>
   <!--<a *ngIf="!authService.isUserLoggedIn()" [routerLink]="['login']"><div>Zaloguj się</div></a>
   <a *ngIf="!authService.isUserLoggedIn()" [routerLink]="['registration']"><div>Zarejestruj się</div></a>
   <a *ngIf="authService.isUserLoggedIn()" (click)="logOut()" href=""><div>Wyloguj się</div></a>-->
-  <hr>
   <a [routerLink]="['welcome']">
-    <div>Zacznij Tutaj!</div>
+    <button mat-raised-button color="primary" class="nav-button">Zacznij Tutaj!</button>
   </a>
   <a [routerLink]="['clock']">
-    <div>Zegar Życia</div>
+    <button mat-raised-button color="primary" class="nav-button">Zegar Życia</button>
   </a>
 </nav>
+
+
+
+
+

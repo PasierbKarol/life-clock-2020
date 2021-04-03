@@ -25,7 +25,7 @@ body {
   margin: 0 auto;
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #E4F0FF;
+  //background-color: #E4F0FF;
   width: 70%;
 }
 
@@ -56,40 +56,35 @@ header {
 app-navigation-bar {
   grid-area: nav;
   margin-left: 0.6rem;
-  background-color: #90dcff;
 }
 
 main {
   grid-area: content;
-  background-color: #f8f8f1;
-  padding: 25px;
+  //background-color: #f8f8f1;
+  padding: 0 25px 25px 25px;
 }
 
 aside {
   grid-area: side;
   margin-right: 0.6rem;
-  background-color: #90dcff;
 }
 
 footer {
   grid-area: footer;
-  background-color: #90dcff;
   color: white;
   text-align: center;
   padding: 25px 0;
 }
 
-ul li {
-  color: white;
-}
-ul li a {
-  color: white;
-  text-decoration: none;
+
+.nav-button {
+  width: 100%;
+  font-size: large;
+  height: 50px;
+  margin-bottom: 5px !important;
   display: inline-block;
-  margin-bottom: 15px;
 }
 
 .section-divider {
-  background-color: #90dcff;
   min-height: 50px;
 }
