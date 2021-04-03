@@ -28,7 +28,6 @@ export class CompletedGoalsComponent implements OnInit {
   }
 
   public submitGoals(): void {
-    console.log(this.personalDetails, 'personal details');
     const response: ResponseModel = new ResponseModel();
       this.backend.sendGoals(this.personalDetails).subscribe( r => {
         response.httpCode = r.httpCode;
