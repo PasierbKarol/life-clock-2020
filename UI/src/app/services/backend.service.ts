@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class BackendService {
   private SERVICE_PATH: string = `${environment.serverEndpoint}/export-goals-email`;
 
-  private corsHeaders = new HttpHeaders({
+  public corsHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:8080/'
@@ -34,7 +34,7 @@ export class BackendService {
     console.log(data, 'JSON schema data for backend');
 
 
-    return this.http.post<ResponseModel>(this.SERVICE_PATH, data, this.corsHeaders).pipe(
+    return this.http.post<ResponseModel>(this.SERVICE_PATH, data).pipe(
       tap( // Log the result or error
         data => console.log(data, 'returned from the server'),
         error => console.log(error, 'error from the server')

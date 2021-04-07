@@ -14,7 +14,6 @@ class EmailController {
   @Autowired
   lateinit var emailService: EmailServiceImpl
 
-  val addressee: String = "pasierbkarol@gmail.com"
 
   @CrossOrigin(origins = ["http://localhost:4200"])
 //@CrossOrigin(origins = ["http://localhost:8080"])
@@ -25,7 +24,8 @@ class EmailController {
 //    }
 
     try {
-      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
+//      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
+      emailService.sendHtmlMessage("Simple Email from Kotlin", emailRequest)
     } catch (e: Exception) {
       println(e)
       return ResponseEntity<String>("Bad request, email wasn't sent", HttpStatus.BAD_REQUEST)
