@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 class EmailController {
 
   @Autowired
-  lateinit var emailService: EmailServiceImpl
+  lateinit var emailService: EmailService
 
 
   @CrossOrigin(origins = ["http://localhost:4200"])
@@ -25,7 +25,7 @@ class EmailController {
 
     try {
 //      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
-      emailService.sendHtmlMessage("Simple Email from Kotlin", emailRequest)
+      emailService.sendPDFByEmail("Simple Email from Kotlin", emailRequest)
     } catch (e: Exception) {
       println(e)
       return ResponseEntity<String>("Bad request, email wasn't sent", HttpStatus.BAD_REQUEST)
