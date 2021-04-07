@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class BackendService {
-  private SERVICE_PATH: string = `${environment.serverEndpoint}/export-goals-email`;
+  private SERVICE_PATH: string = environment.serverEndpoint;
 
   public corsHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -30,11 +30,25 @@ export class BackendService {
         email: details.email
       }, goals: details.submittedGoals
     };
-    console.log(details, 'details for backend');
-    console.log(data, 'JSON schema data for backend');
 
+    return this.http.post<ResponseModel>(`${this.SERVICE_PATH}/send-goals-by-email`, data).pipe(
+      tap( // Log the result or error
+        data => console.log(data, 'returned from the server'),
+        error => console.log(error, 'error from the server')
+      )
+    );
+  }
 
-    return this.http.post<ResponseModel>(this.SERVICE_PATH, data).pipe(
+  public exportGoalsToPDF(details: PersonalDetailsModel): Observable<ResponseModel> {
+    const data: ExportToEmailRequestModel = {
+      personalDetails: {
+        name: details.name,
+        surname: details.surname,
+        email: details.email
+      }, goals: details.submittedGoals
+    };
+
+    return this.http.post<ResponseModel>(`${this.SERVICE_PATH}/export-goals-by-pdf`, data).pipe(
       tap( // Log the result or error
         data => console.log(data, 'returned from the server'),
         error => console.log(error, 'error from the server')
