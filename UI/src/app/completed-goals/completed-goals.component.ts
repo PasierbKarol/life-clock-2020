@@ -27,13 +27,20 @@ export class CompletedGoalsComponent implements OnInit {
     });
   }
 
-  public submitGoals(): void {
+  public sendByEmail(): void {
     const response: ResponseModel = new ResponseModel();
-      this.backend.sendGoals(this.personalDetails).subscribe( r => {
+      this.backend.sendGoalsByEmail(this.personalDetails).subscribe(r => {
         response.httpCode = r.httpCode;
         response.responseJSON = r.responseJSON;
       });
-      console.log(response, 'response');
+  }
+
+  public exportToPDF(): void {
+    const response: ResponseModel = new ResponseModel();
+      this.backend.exportGoalsToPDF(this.personalDetails).subscribe(r => {
+        response.httpCode = r.httpCode;
+        response.responseJSON = r.responseJSON;
+      });
   }
 
   public emailInput = new FormControl('', [Validators.required, Validators.email]);

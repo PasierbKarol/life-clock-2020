@@ -22,7 +22,7 @@ export class BackendService {
   constructor(private http: HttpClient) {
   }
 
-  public sendGoals(details: PersonalDetailsModel): Observable<ResponseModel> {
+  public sendGoalsByEmail(details: PersonalDetailsModel): Observable<ResponseModel> {
     const data: ExportToEmailRequestModel = {
       personalDetails: {
         name: details.name,
