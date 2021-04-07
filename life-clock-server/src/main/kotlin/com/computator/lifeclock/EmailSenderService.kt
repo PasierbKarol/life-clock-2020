@@ -54,15 +54,14 @@ class EmailService {
       textBodyPart.setText(bodyText)
 
       //now write the PDF content to the output stream
-      pdfCreatorService.createPDFForEmail(goals, outputStream)
-      println("PDF was prepared")
+      pdfCreatorService.preparePDFForOutput(goals, outputStream)
       val bytes: ByteArray = outputStream.toByteArray()
 
       //construct the pdf body part
       val dataSource: DataSource = ByteArrayDataSource(bytes, "application/pdf")
       val pdfBodyPart = MimeBodyPart()
       pdfBodyPart.dataHandler = DataHandler(dataSource)
-      pdfBodyPart.fileName = "Life-Clock-Goals_" + details.name + ".pdf"
+      pdfBodyPart.fileName = getPDFFileName(details.name)
 
       //construct the mime multi part
       val mimeMultipart = MimeMultipart()
@@ -70,7 +69,7 @@ class EmailService {
       mimeMultipart.addBodyPart(pdfBodyPart)
 
       //construct the mime message
-      val mimeMessage: MimeMessage = MimeMessage(session)
+      val mimeMessage = MimeMessage(session)
       mimeMessage.sender = iaSender
       mimeMessage.subject = subject
       mimeMessage.setRecipient(Message.RecipientType.TO, iaRecipient)
@@ -87,24 +86,23 @@ class EmailService {
       outputStream.close()
     }
   }
+
+  fun setupEmail(): Session {
+    val smtpHost = "smtp.mailtrap.io" //replace this with a valid host
+    val smtpPort = 2525 //replace this with a valid port
+    val username = "a71b15fd06f187"
+    val password = "1ac225773a4880"
+
+    val properties = Properties()
+    properties["mail.smtp.auth"] = "true"
+    properties["mail.smtp.host"] = smtpHost
+    properties["mail.smtp.starttls.enable"] = true
+    properties["mail.smtp.port"] = smtpPort
+
+    return Session.getDefaultInstance(properties, object : Authenticator() {
+      override fun getPasswordAuthentication(): PasswordAuthentication {
+        return PasswordAuthentication(username, password)
+      }
+    })
+  }
 }
-
-fun setupEmail(): Session {
-  val smtpHost = "smtp.mailtrap.io" //replace this with a valid host
-  val smtpPort = 2525 //replace this with a valid port
-  val username = "a71b15fd06f187"
-  val password = "1ac225773a4880"
-
-  val properties = Properties()
-  properties["mail.smtp.auth"] = "true";
-  properties["mail.smtp.host"] = smtpHost
-  properties["mail.smtp.starttls.enable"] = true;
-  properties["mail.smtp.port"] = smtpPort
-
-  return Session.getDefaultInstance(properties, object : Authenticator() {
-    override fun getPasswordAuthentication(): PasswordAuthentication {
-      return PasswordAuthentication(username, password)
-    }
-  })
-}
-
