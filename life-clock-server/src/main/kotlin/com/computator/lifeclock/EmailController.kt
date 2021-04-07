@@ -16,16 +16,31 @@ class EmailController {
 
 
   @CrossOrigin(origins = ["http://localhost:4200"])
-//@CrossOrigin(origins = ["http://localhost:8080"])
-  @PostMapping("/export-goals-email")
-  fun sendSimpleEmail(@RequestBody emailRequest: ExportToEmailRequest/*, bindingResult: BindingResult*/): ResponseEntity<*> {
+  @PostMapping("/send-goals-by-email")
+  fun sendGoalsByEmail(@RequestBody request: ExportToEmailRequest/*, bindingResult: BindingResult*/): ResponseEntity<*> {
 //    if(bindingResult.hasErrors()) {
 //    throw ValidationException()
 //    }
 
     try {
 //      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
-      emailService.sendPDFByEmail("Simple Email from Kotlin", emailRequest)
+      emailService.sendPDFByEmail(request.personalDetails, request.goals)
+    } catch (e: Exception) {
+      println(e)
+      return ResponseEntity<String>("Bad request, email wasn't sent", HttpStatus.BAD_REQUEST)
+    }
+    return ResponseEntity<String>("Email has been sent", HttpStatus.OK)
+  }
+
+  @CrossOrigin(origins = ["http://localhost:4200"])
+  @PostMapping("export-goals-by-pdf")
+  fun exportGoalsByPDF(@RequestBody request: ExportToEmailRequest/*, bindingResult: BindingResult*/): ResponseEntity<*> {
+//    if(bindingResult.hasErrors()) {
+//    throw ValidationException()
+//    }
+
+    try {
+//      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
     } catch (e: Exception) {
       println(e)
       return ResponseEntity<String>("Bad request, email wasn't sent", HttpStatus.BAD_REQUEST)

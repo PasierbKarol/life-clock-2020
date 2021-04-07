@@ -37,12 +37,12 @@ class EmailService {
 
   val pdfCreatorService: PDFCreatorService = PDFCreatorService()
 
-  fun sendPDFByEmail(subject: String,
-                     content: ExportToEmailRequest) {
+  fun sendPDFByEmail(details: PersonalDetails, goals: List<LifeGoals>) {
+    val subject = "Cześć " + details.name + "! Oto Twoje cele z programu Zegar Życia!"
     println("Preparing email setup")
     //create the sender/recipient addresses
     val iaSender = InternetAddress(sender)
-    val iaRecipient = InternetAddress(content.personalDetails.email)
+    val iaRecipient = InternetAddress(details.email)
     val session = setupEmail()
     println("Preparing email content")
 
@@ -50,11 +50,11 @@ class EmailService {
     try {
       //construct the text body part
       val textBodyPart = MimeBodyPart()
-      val bodyText = (content.personalDetails.name + " " + content.personalDetails.surname)
+      val bodyText = (details.name + " " + details.surname)
       textBodyPart.setText(bodyText)
 
       //now write the PDF content to the output stream
-      pdfCreatorService.createPDFForEmail(content, outputStream)
+      pdfCreatorService.createPDFForEmail(goals, outputStream)
       println("PDF was prepared")
       val bytes: ByteArray = outputStream.toByteArray()
 
@@ -62,7 +62,7 @@ class EmailService {
       val dataSource: DataSource = ByteArrayDataSource(bytes, "application/pdf")
       val pdfBodyPart = MimeBodyPart()
       pdfBodyPart.dataHandler = DataHandler(dataSource)
-      pdfBodyPart.fileName = "Life-Clock-Goals-for-" + content.personalDetails.name + ".pdf"
+      pdfBodyPart.fileName = "Life-Clock-Goals_" + details.name + ".pdf"
 
       //construct the mime multi part
       val mimeMultipart = MimeMultipart()
@@ -79,7 +79,7 @@ class EmailService {
       //send off the email
       Transport.send(mimeMessage)
       println("sent from " + sender +
-        ", to " + content.personalDetails.email +
+        ", to " + details.email +
         "; server = " + session.properties["mail.smtp.host"] + ", port = " + session.properties["mail.smtp.port"])
     } catch (ex: Exception) {
       ex.printStackTrace()
