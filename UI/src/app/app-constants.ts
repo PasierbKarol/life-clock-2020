@@ -1,12 +1,12 @@
 export class AppConstants {
 
-  public static LIFE_CLOCK = 'life-clock';
-  public static FIVE_YEARS = 'five-years';
-  public static TWO_YEARS = 'two-years';
-  public static ONE_YEAR = 'one-year';
-  public static SIX_MONTHS = 'six-months';
-  public static THREE_MONTHS = 'three-months';
-  public static ONE_MONTH = 'one-month';
+  public static LIFE_CLOCK = 'life_clock';
+  public static FIVE_YEARS = 'five_years';
+  public static TWO_YEARS = 'two_years';
+  public static ONE_YEAR = 'one_year';
+  public static SIX_MONTHS = 'six_months';
+  public static THREE_MONTHS = 'three_months';
+  public static ONE_MONTH = 'one_month';
 
   private static lifeClockEN = {
     goalBlocks: [
@@ -116,14 +116,14 @@ export class AppConstants {
           'To jest lista Twoich celów na kolejne 5 lat. ' + AppConstants.importancePL +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 5 latach.',
         title: 'Cele na następne 5 lat',
-        id: 'five-years'
+        id: AppConstants.FIVE_YEARS
       },
       {
         description:
           'To jest lista Twoich celów na kolejne 2 lata. Ponownie zadaj sobie następujące pytania. ' + AppConstants.importancePL +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 2 latach.',
         title: 'Cele na następne 2 lata',
-        id: 'two-years'
+        id: AppConstants.TWO_YEARS
       },
       {
         description:
@@ -131,7 +131,7 @@ export class AppConstants {
           '\nNaprawdę dobrze się zastanów, co jest najważniejsze i ponownie zreorganizuj wszystkie swoje cele\n' +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnego roku.',
         title: 'Cele na następny rok',
-        id: 'one-year'
+        id: AppConstants.ONE_YEAR
       },
       {
         description:
@@ -139,7 +139,7 @@ export class AppConstants {
           '\n 6 miesięcy to niedaleka przyszłość. Podejdź do tego tak, jakby nic innego nie miało znaczenia. ' +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 6 miesięcy.',
         title: 'Cele na następne 6 miesięcy',
-        id: 'six-months'
+        id: AppConstants.SIX_MONTHS
       },
       {
         description:
@@ -150,14 +150,14 @@ export class AppConstants {
           AppConstants.importancePL +
           '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnych 3 miesięcy.',
         title: 'Cele na następne 3 miesiące',
-        id: 'three-months'
+        id: AppConstants.THREE_MONTHS
       },
       {
         description: 'Ostatni podział. Tutaj powinno wylądować wszystko, co spełni Twoje największe marzenia. .' +
         AppConstants.importancePL +
         '\nPrzeciągnij tutaj cele, które są dla Ciebie ważne w ciągu kolejnego miesiąca.',
         title: 'Cele na kolejny miesiąc',
-        id: 'one-month'
+        id: AppConstants.ONE_MONTH
       },
     ],
     introduction_title: 'Największy priorytet w Twoim życiu',
