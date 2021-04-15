@@ -29,8 +29,10 @@ class PDFCreatorService {
     PdfWriter.getInstance(pdfForEmail, outputStream)
     pdfForEmail.open()
    // -------------- Creating Document --------------------
-    createChunk(documentTitle, title)
+    createHeader(pdfForEmail, documentTitle, title)
+
     preparedGoals.forEach {
+      println("Creating section: ${it.key}!")
       createParagraph(pdfForEmail, it.key, it.value)
     }
     pdfForEmail.close()
@@ -38,12 +40,22 @@ class PDFCreatorService {
     println("PDF was prepared")
   }
 
-  private fun createParagraph(doc: Document, title: String, section: List<LifeGoal>) {
+  private fun createParagraph(doc: Document, sectionTitle: String, section: List<LifeGoal>) {
     val paragraph = Paragraph()
-    createChunk(title, header)
+    createHeader(doc, sectionTitle, header)
+
     for (goal in section) {
-      createChunk(goal.name, content)
+      paragraph.add(createChunk(goal.name, content))
+      paragraph.add(Chunk.NEWLINE)
     }
+    paragraph.add(Chunk.NEWLINE)
+    doc.add(paragraph)
+  }
+
+  private fun createHeader(doc: Document, headerText: String, headerType: Font) {
+    val paragraph = Paragraph()
+    paragraph.add(createChunk(headerText, headerType))
+    paragraph.add(Chunk.NEWLINE)
     doc.add(paragraph)
   }
 

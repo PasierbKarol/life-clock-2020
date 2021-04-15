@@ -55,6 +55,7 @@ class EmailService {
       textBodyPart.setText(bodyText)
 
       //now write the PDF content to the output stream
+      println("Creating document")
       pdfCreatorService.preparePDFForOutput(documentTitle, goals, outputStream)
       val bytes: ByteArray = outputStream.toByteArray()
 
