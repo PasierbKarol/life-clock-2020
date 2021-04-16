@@ -39,7 +39,7 @@ class EmailService {
 
   fun sendPDFByEmail(details: PersonalDetails, goals: List<LifeGoal>) {
     val subject = "Cześć ${details.name}! Oto Twoje cele z programu Zegar Życia!"
-    val documentTitle = "Zegar Życia! \nPrzygotowane dla ${details.name} ${details.surname}."
+    val documentTitle = "Zegar Zycia! \n\nPrzygotowane dla ${details.name} ${details.surname}.\n\n"
     println("Preparing email setup")
     //create the sender/recipient addresses
     val iaSender = InternetAddress(sender)
