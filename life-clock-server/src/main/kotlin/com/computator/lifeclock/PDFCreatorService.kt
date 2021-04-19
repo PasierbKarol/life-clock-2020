@@ -1,20 +1,16 @@
 package com.computator.lifeclock
 
 import com.itextpdf.text.*
+import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
 import org.springframework.stereotype.Component
 import java.io.OutputStream
-import kotlin.collections.List
 
 
 @Component
 class PDFCreatorService {
-//  companion object {
-//    private val map = Sections.values().associateBy(Sections::section)
-//    fun fromString(type: String) = map[type]
-//  }
 
-  val sections = mapOf<String, String>(
+  val sections = mapOf(
     "FIVE_YEARS" to "Cele na następne 5 lat",
     "TWO_YEARS" to "Cele na następne 2 lata",
     "ONE_YEAR" to "Cele na następny rok",
@@ -22,17 +18,18 @@ class PDFCreatorService {
     "THREE_MONTHS" to "Cele na następne 3 miesiące",
     "ONE_MONTH" to "Cele na kolejny miesiąc")
 
-//  private val content = FontFactory.getFont(FontFactory.HELVETICA, 14F, BaseColor.BLACK)
-  private val header: Font = FontFactory.getFont(FontFactory.HELVETICA, 20F, BaseColor.BLACK)
-  private val title: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 28F, BaseColor.DARK_GRAY)
+  private val content = FontFactory.getFont(FontFactory.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED, 14F, 0, BaseColor.BLACK)
+  private val header: Font = FontFactory.getFont(FontFactory.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED, 20F, 0, BaseColor.BLACK)
+  private val title: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, BaseFont.CP1250, BaseFont.EMBEDDED, 28F, 0, BaseColor.DARK_GRAY)
 
-  fun preparePDFForOutput(documentTitle: String, goals: List<LifeGoal>, outputStream: OutputStream) {
+  fun preparePDFForOutput(goals: List<LifeGoal>, outputStream: OutputStream) {
     val preparedGoals = goals.groupBy { it.placement }
     val pdfForEmail = Document()
 
     PdfWriter.getInstance(pdfForEmail, outputStream)
     pdfForEmail.open()
     // -------------- Creating Document --------------------
+    val documentTitle = "Zegar Życia! \n\n Twoje Cele"
     createHeader(pdfForEmail, documentTitle, title, true)
 
     preparedGoals.forEach {
@@ -40,14 +37,13 @@ class PDFCreatorService {
       createParagraph(pdfForEmail, it.key, it.value)
     }
 
-     pdfForEmail.close()
-
+    pdfForEmail.close()
     println("PDF was prepared")
   }
 
   private fun createParagraph(doc: Document, sectionTitle: String, section: List<LifeGoal>) {
     val unorderedList = com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED)
-    unorderedList.setListSymbol("\u2022");
+    unorderedList.setListSymbol("\u2022")
     unorderedList.indentationLeft = 5F
     unorderedList.postSymbol = " "
 
@@ -56,7 +52,7 @@ class PDFCreatorService {
 
     createHeader(doc, sections.getOrDefault(sectionTitle.toUpperCase(), sectionTitle), header, false)
 
-    section.forEach { unorderedList.add(ListItem(it.name)) }
+    section.forEach { unorderedList.add(ListItem(it.name, content)) }
 
     doc.add(unorderedList)
     paragraph.add(Chunk.NEWLINE)

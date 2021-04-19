@@ -39,7 +39,6 @@ class EmailService {
 
   fun sendPDFByEmail(details: PersonalDetails, goals: List<LifeGoal>) {
     val subject = "Cześć ${details.name}! Oto Twoje cele z programu Zegar Życia!"
-    val documentTitle = "Zegar Zycia! \n\nPrzygotowane dla ${details.name} ${details.surname}.\n\n"
     println("Preparing email setup")
     //create the sender/recipient addresses
     val iaSender = InternetAddress(sender)
@@ -56,7 +55,7 @@ class EmailService {
 
       //now write the PDF content to the output stream
       println("Creating document")
-      pdfCreatorService.preparePDFForOutput(documentTitle, goals, outputStream)
+      pdfCreatorService.preparePDFForOutput(goals, outputStream)
       val bytes: ByteArray = outputStream.toByteArray()
 
       //construct the pdf body part

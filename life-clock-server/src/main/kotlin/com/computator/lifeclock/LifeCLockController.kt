@@ -55,8 +55,7 @@ class LifeCLockController {
 
     try {
 //      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
-      val documentTitle = "Zegar Zycia! \n\nPrzygotowane dla ${request.personalDetails.name} ${request.personalDetails.surname}.\n\n"
-      pdfService.preparePDFForOutput(documentTitle, request.goals, outputStream)
+      pdfService.preparePDFForOutput(request.goals, outputStream)
       val bytes: ByteArray = outputStream.toByteArray()
       bis = bytes.inputStream()
     } catch (e: Exception) {
