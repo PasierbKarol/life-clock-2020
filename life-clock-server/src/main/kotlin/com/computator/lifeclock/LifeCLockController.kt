@@ -42,7 +42,8 @@ class LifeCLockController {
 
   @CrossOrigin(origins = ["http://localhost:4200"])
   @PostMapping("/export-goals-by-pdf")
-  fun exportGoalsByPDF(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<InputStreamResource> {
+//  fun exportGoalsByPDF(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<InputStreamResource> {
+  fun exportGoalsByPDF(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<ByteArray> {
 //    if(bindingResult.hasErrors()) {
 //    throw ValidationException()
 //    }
@@ -63,10 +64,16 @@ class LifeCLockController {
     } finally {
       outputStream.close()
     }
-    return ResponseEntity
+//    return ResponseEntity
+//      .ok()
+//      .headers(headers)
+//      .contentType(MediaType.APPLICATION_PDF)
+//      .body(InputStreamResource(bis))
+        return ResponseEntity
       .ok()
       .headers(headers)
       .contentType(MediaType.APPLICATION_PDF)
-      .body(InputStreamResource(bis)); }
+      .body(bis.readAllBytes())
+  }
 }
 
