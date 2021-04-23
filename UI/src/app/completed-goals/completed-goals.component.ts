@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import {saveAs} from 'file-saver';
 import { PersonalDetailsModel } from 'src/app/models/personal-details.model';
 import { ResponseModel } from 'src/app/models/response.model';
 import { BackendService } from 'src/app/services/backend.service';
@@ -36,11 +37,14 @@ export class CompletedGoalsComponent implements OnInit {
   }
 
   public exportToPDF(): void {
-    const response: ResponseModel = new ResponseModel();
-      this.backend.exportGoalsToPDF(this.personalDetails).subscribe(r => {
-        response.httpCode = r.httpCode;
-        response.responseJSON = r.responseJSON;
-      });
+    this.backend.exportGoalsToPDF(this.personalDetails).subscribe(
+      response => {
+        saveAs(response, `Life-Clock-Goals_${this.personalDetails.name}.pdf`)},
+        error => this.errorHandling(error));
+  }
+
+  private errorHandling(error: String) {
+    console.log(error, 'Inside error handling')
   }
 
   public emailInput = new FormControl('', [Validators.required, Validators.email]);

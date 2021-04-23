@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ExportToEmailRequestModel } from 'src/app/models/export-to-email-request.model';
 import { PersonalDetailsModel } from 'src/app/models/personal-details.model';
 import { ResponseModel } from 'src/app/models/response.model';
@@ -39,7 +39,7 @@ export class BackendService {
     );
   }
 
-  public exportGoalsToPDF(details: PersonalDetailsModel): Observable<ResponseModel> {
+  public exportGoalsToPDF(details: PersonalDetailsModel): Observable<Blob> {
     const data: ExportToEmailRequestModel = {
       personalDetails: {
         name: details.name,
@@ -48,12 +48,28 @@ export class BackendService {
       }, goals: details.submittedGoals
     };
 
-    return this.http.post<ResponseModel>(`${this.SERVICE_PATH}/export-goals-by-pdf`, data).pipe(
-      tap( // Log the result or error
-        data => console.log(data, 'returned from the server'),
-        error => console.log(error, 'error from the server')
-      )
+    const HTTPOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/pdf'
+      }),
+      'responseType': 'blob' as 'json'
+    };
+
+    return this.http.post<Blob>(`${this.SERVICE_PATH}/export-goals-by-pdf`, data, HTTPOptions).pipe(
+      map(response => response)
     );
   }
+
+  private base64ToArrayBuffer(base64) {
+    const binaryString = window.atob(base64);
+    const binaryLen = binaryString.length;
+    const bytes = new Uint8Array(binaryLen);
+    for (let i = 0; i < binaryLen; i++) {
+      const ascii = binaryString.charCodeAt(i);
+      bytes[i] = ascii;
+    }
+    return bytes;
+  }
+
 }
 
