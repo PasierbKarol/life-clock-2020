@@ -5,8 +5,9 @@ import { AuthorisationGuard } from './guards/authorisation-guard.service';
 import { LifeClockComponent } from './life-clock/life-clock.component';
 import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
 
-export const APP_ROUTE_PREFIX = 'app';
-const DEFAULT_ROUTE = `${APP_ROUTE_PREFIX}/`;
+export const APP_ROUTE_PREFIX = 'life-clock';
+// const DEFAULT_ROUTE = `${APP_ROUTE_PREFIX}`;
+const DEFAULT_ROUTE = AppRouteType.WELCOME;
 
 export const routes: Routes = [
   {path: '', redirectTo: DEFAULT_ROUTE, pathMatch: 'full', canActivate: [AuthorisationGuard]},
@@ -17,12 +18,14 @@ export const routes: Routes = [
    data: {title: APP_ROUTE_TYPE_TITLE.get(AppRouteType.APP_REGISTRATION)}
    },*/
   {
+    // path: `${APP_ROUTE_PREFIX}/${AppRouteType.WELCOME}`,
     path: AppRouteType.WELCOME,
     component: WelcomeInfoComponent,
     data: {title: APP_ROUTE_TYPE_TITLE.get(AppRouteType.WELCOME)},
     canActivate: [AuthorisationGuard]
   },
   {
+    // path: `${APP_ROUTE_PREFIX}/${AppRouteType.CLOCK}`,
     path: AppRouteType.CLOCK,
     component: LifeClockComponent,
     data: {title: APP_ROUTE_TYPE_TITLE.get(AppRouteType.CLOCK)},

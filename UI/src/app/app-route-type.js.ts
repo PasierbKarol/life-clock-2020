@@ -1,7 +1,5 @@
 import { Map as ImmutableMap } from 'immutable';
 
-export const APP_ROUTE_PREFIX = 'app';
-
 export enum AppRouteType {
   APP_LOGIN = 'login',
   APP_REGISTRATION = 'registration',
