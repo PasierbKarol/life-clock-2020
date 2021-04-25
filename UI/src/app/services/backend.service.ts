@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ExportToEmailRequestModel } from 'src/app/models/export-to-email-request.model';
+import { LifeGoalModel } from 'src/app/models/life-goal.model';
 import { PersonalDetailsModel } from 'src/app/models/personal-details.model';
 import { ResponseModel } from 'src/app/models/response.model';
 import { environment } from 'src/environments/environment';
@@ -12,12 +13,6 @@ import { environment } from 'src/environments/environment';
 })
 export class BackendService {
   private SERVICE_PATH: string = environment.serverEndpoint;
-
-  public corsHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:8080/'
-  });
 
   constructor(private http: HttpClient) {
   }
@@ -32,22 +27,11 @@ export class BackendService {
     };
 
     return this.http.post<ResponseModel>(`${this.SERVICE_PATH}/send-goals-by-email`, data).pipe(
-      tap( // Log the result or error
-        data => console.log(data, 'returned from the server'),
-        error => console.log(error, 'error from the server')
-      )
+      map(r => r)
     );
   }
 
-  public exportGoalsToPDF(details: PersonalDetailsModel): Observable<Blob> {
-    const data: ExportToEmailRequestModel = {
-      personalDetails: {
-        name: details.name,
-        surname: details.surname,
-        email: details.email
-      }, goals: details.submittedGoals
-    };
-
+  public exportGoalsToPDF(dataToExport: LifeGoalModel[]): Observable<Blob> {
     const HTTPOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/pdf'
@@ -55,7 +39,7 @@ export class BackendService {
       'responseType': 'blob' as 'json'
     };
 
-    return this.http.post<Blob>(`${this.SERVICE_PATH}/export-goals-by-pdf`, data, HTTPOptions).pipe(
+    return this.http.post<Blob>(`${this.SERVICE_PATH}/export-goals-by-pdf`, dataToExport, HTTPOptions).pipe(
       map(response => response)
     );
   }
