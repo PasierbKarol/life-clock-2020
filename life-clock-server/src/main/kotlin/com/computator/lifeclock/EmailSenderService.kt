@@ -40,6 +40,7 @@ class EmailService {
   fun sendPDFByEmail(details: PersonalDetails, goals: List<LifeGoal>) {
     val subject = "Cześć ${details.name}! Oto Twoje cele z programu Zegar Życia!"
     println("Preparing email setup")
+
     //create the sender/recipient addresses
     val iaSender = InternetAddress(sender)
     val iaRecipient = InternetAddress(details.email)
@@ -48,6 +49,7 @@ class EmailService {
 
     val outputStream = ByteArrayOutputStream()
     try {
+
       //construct the text body part
       val textBodyPart = MimeBodyPart()
       val bodyText = (details.name + " " + details.surname)
@@ -81,6 +83,7 @@ class EmailService {
       println("sent from " + sender +
         ", to " + details.email +
         "; server = " + session.properties["mail.smtp.host"] + ", port = " + session.properties["mail.smtp.port"])
+
     } catch (ex: Exception) {
       ex.printStackTrace()
     } finally {

@@ -24,24 +24,35 @@ class LifeCLockController {
 
   @CrossOrigin(origins = ["http://localhost:4200"])
   @PostMapping("/send-goals-by-email")
-  fun sendGoalsByEmail(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<*> {
+  fun sendGoalsByEmail(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<ResponseModel> {
 //    if(bindingResult.hasErrors()) {
 //    throw ValidationException()
 //    }
+
+    val headers = HttpHeaders()
+    headers.add("Content-Disposition", "inline;")
 
     try {
 //      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
       emailService.sendPDFByEmail(request.personalDetails, request.goals)
     } catch (e: Exception) {
       println(e)
-      return ResponseEntity<String>("Bad request, email wasn't sent", HttpStatus.BAD_REQUEST)
+      return ResponseEntity
+        .badRequest()
+        .headers(headers)
+        .contentType(MediaType.APPLICATION_PROBLEM_JSON)
+        .body(ResponseModel(null, null, "Bad request, email wasn't sent", HttpStatus.BAD_REQUEST))
     }
-    return ResponseEntity<String>("Email has been sent", HttpStatus.OK)
+    return ResponseEntity
+      .ok()
+      .headers(headers)
+      .contentType(MediaType.APPLICATION_JSON)
+      .body(ResponseModel("The email was sent successfully!", null, "", HttpStatus.OK))
   }
 
   @CrossOrigin(origins = ["http://localhost:4200"])
   @PostMapping("/export-goals-by-pdf")
-  fun exportGoalsByPDF(@RequestBody request: List<LifeGoal>/*, bindingResult: BindingResult*/): ResponseEntity<ByteArray> {
+  fun exportGoalsByPDF(@RequestBody request: List<LifeGoal>/*, bindingResult: BindingResult*/): ResponseEntity<*> {
 //    if(bindingResult.hasErrors()) {
 //    throw ValidationException()
 //    }
@@ -58,9 +69,15 @@ class LifeCLockController {
       bis = bytes.inputStream()
     } catch (e: Exception) {
       println(e)
+      return ResponseEntity
+        .badRequest()
+        .headers(headers)
+        .contentType(MediaType.APPLICATION_PROBLEM_JSON)
+        .body(ResponseModel(null, null, "Bad request, PDF wasn't created!", HttpStatus.BAD_REQUEST))
     } finally {
       outputStream.close()
     }
+
     return ResponseEntity
       .ok()
       .headers(headers)

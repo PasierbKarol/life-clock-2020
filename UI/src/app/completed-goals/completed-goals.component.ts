@@ -4,7 +4,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { saveAs } from 'file-saver';
 import { PersonalDetailsModel } from 'src/app/models/personal-details.model';
-import { ResponseModel } from 'src/app/models/response.model';
 import { BackendService } from 'src/app/services/backend.service';
 import { GoalsProviderService } from 'src/app/services/goals-provider.service';
 
@@ -32,11 +31,9 @@ export class CompletedGoalsComponent implements OnInit {
   }
 
   public sendByEmail(): void {
-    const response: ResponseModel = new ResponseModel();
-    this.backend.sendGoalsByEmail(this.personalDetails).subscribe(r => {
-        response.httpCode = r.httpCode;
-        response.responseJSON = r.responseJSON;
-        this.successfulOperation('The email was sent successfully!');
+    this.backend.sendGoalsByEmail(this.personalDetails).subscribe(response => {
+        console.log(response, 'Response in email');
+        this.successfulOperation(response.responseJSON);
       },
       error => this.errorHandling(error, 'The email could not be sent! Error=')
     );
@@ -45,14 +42,18 @@ export class CompletedGoalsComponent implements OnInit {
   public exportToPDF(): void {
     this.backend.exportGoalsToPDF(this.personalDetails.submittedGoals).subscribe(
       response => {
+        console.log(response, 'Response in PDF');
         saveAs(response, `Life-Clock-Goals.pdf`);
-        this.successfulOperation('The PDF was successfully created!');
+        this.successfulOperation('PDF was successfully created!');
       },
       error => this.errorHandling(error, 'The PDF could not be exported! Error='));
   }
 
   private errorHandling(error: HttpErrorResponse, message: string): void {
-    const emailSentSnackBar = this.snackBar.open(`${message}${error.message}`, 'Close', {
+    console.log(error, 'Error returned');
+    const errorMessage = error.error.message;
+    const emailSentSnackBar =
+      this.snackBar.open(`${message}${!!errorMessage ? errorMessage : error.message}`, 'Close', {
       duration: 3500,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
