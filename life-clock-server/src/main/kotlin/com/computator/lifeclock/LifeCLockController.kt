@@ -1,7 +1,6 @@
 package com.computator.lifeclock
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.core.io.InputStreamResource
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -42,21 +41,19 @@ class LifeCLockController {
 
   @CrossOrigin(origins = ["http://localhost:4200"])
   @PostMapping("/export-goals-by-pdf")
-//  fun exportGoalsByPDF(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<InputStreamResource> {
-  fun exportGoalsByPDF(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<ByteArray> {
+  fun exportGoalsByPDF(@RequestBody request: List<LifeGoal>/*, bindingResult: BindingResult*/): ResponseEntity<ByteArray> {
 //    if(bindingResult.hasErrors()) {
 //    throw ValidationException()
 //    }
 
     val headers = HttpHeaders()
-    headers.add("Content-Disposition", "inline; filename=" + getPDFFileName(request.personalDetails.name))
+    headers.add("Content-Disposition", "inline; filename=" + getPDFFileName(""))
 
     val outputStream = ByteArrayOutputStream()
     lateinit var bis: InputStream
 
     try {
-//      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
-      pdfService.preparePDFForOutput(request.goals, outputStream)
+      pdfService.preparePDFForOutput(request, outputStream)
       val bytes: ByteArray = outputStream.toByteArray()
       bis = bytes.inputStream()
     } catch (e: Exception) {
@@ -64,12 +61,7 @@ class LifeCLockController {
     } finally {
       outputStream.close()
     }
-//    return ResponseEntity
-//      .ok()
-//      .headers(headers)
-//      .contentType(MediaType.APPLICATION_PDF)
-//      .body(InputStreamResource(bis))
-        return ResponseEntity
+    return ResponseEntity
       .ok()
       .headers(headers)
       .contentType(MediaType.APPLICATION_PDF)

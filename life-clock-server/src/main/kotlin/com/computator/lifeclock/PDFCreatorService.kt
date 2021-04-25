@@ -6,7 +6,6 @@ import com.itextpdf.text.pdf.PdfWriter
 import org.springframework.stereotype.Component
 import java.io.OutputStream
 
-
 @Component
 class PDFCreatorService {
 
@@ -24,20 +23,21 @@ class PDFCreatorService {
 
   fun preparePDFForOutput(goals: List<LifeGoal>, outputStream: OutputStream) {
     val preparedGoals = goals.groupBy { it.placement }
-    val pdfForEmail = Document()
+    val pdfDoc = Document()
 
-    PdfWriter.getInstance(pdfForEmail, outputStream)
-    pdfForEmail.open()
+    PdfWriter.getInstance(pdfDoc, outputStream)
+    pdfDoc.open()
+
     // -------------- Creating Document --------------------
     val documentTitle = "Zegar Życia! \n\n Twoje Cele"
-    createHeader(pdfForEmail, documentTitle, title, true)
+    createHeader(pdfDoc, documentTitle, title, true)
 
     preparedGoals.forEach {
       println("Creating section: ${it.key}!")
-      createParagraph(pdfForEmail, it.key, it.value)
+      createParagraph(pdfDoc, it.key, it.value)
     }
 
-    pdfForEmail.close()
+    pdfDoc.close()
     println("PDF was prepared")
   }
 
@@ -62,6 +62,7 @@ class PDFCreatorService {
   private fun createHeader(doc: Document, headerText: String, headerType: Font, isTitle: Boolean) {
     val paragraph = Paragraph()
     paragraph.add(createChunk(headerText, headerType))
+
     if (isTitle) paragraph.alignment = Element.ALIGN_CENTER
     paragraph.add(Chunk.NEWLINE)
     paragraph.add(Paragraph(" "))
