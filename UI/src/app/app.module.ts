@@ -1,11 +1,14 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from 'src/environments/environment.prod';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CompletedGoalsComponent } from './completed-goals/completed-goals.component';
 import { EditModeDirective } from './directives/edit-mode.directive';
 import { ViewModeDirective } from './directives/view-mode.directive';
 import { DraggableGoalComponent } from './draggable-goal/draggable-goal.component';
@@ -15,7 +18,6 @@ import { LifeClockComponent } from './life-clock/life-clock.component';
 import { MaterialModule } from './material/material.module';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
-import { CompletedGoalsComponent } from './completed-goals/completed-goals.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { CompletedGoalsComponent } from './completed-goals/completed-goals.compo
     DragDropModule
   ],
   providers: [
+    {provide: APP_BASE_HREF, useValue: environment.baseHref}
   ],
   bootstrap: [AppComponent]
 })

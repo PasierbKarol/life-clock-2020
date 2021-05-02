@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  serverEndpoint: 'https://karolpasierb.pl/app-life-clock:8080'
+  serverEndpoint: 'https://karolpasierb.pl/app-life-clock:8080',
+  baseHref: '/app-life-clock/'
 };
