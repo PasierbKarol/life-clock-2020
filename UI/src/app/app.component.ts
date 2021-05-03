@@ -1,6 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +7,4 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AppComponent {
   title = 'life-clock-2020';
-  constructor(@Inject(DOCUMENT) private document) {
-  }
-
-  ngOnInit(): void {
-    let bases = this.document.getElementsByTagName('base');
-
-    if (bases.length > 0) {
-      bases[0].setAttribute('href', environment.baseHref);
-
-    }
-  }
-
 }

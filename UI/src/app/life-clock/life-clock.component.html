@@ -7,7 +7,7 @@
     </mat-expansion-panel-header>
     <textarea id="lifeList" #lifeList required
               placeholder="Wypisz lub wklej tutaj swoje cele oddzielając je przyciskiem Enter."></textarea>
-    <button mat-raised-button color="primary" id="listCompleteButton" name="listComplete"
+    <button mat-raised-button color="primary" class="complete-button" name="listComplete"
             (click)="listSubmitted(lifeList.value)">Zatwierdź listę
     </button>
     <p class="description">{{listInstructions}}</p>

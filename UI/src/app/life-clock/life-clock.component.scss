@@ -13,10 +13,9 @@
 #lifeList {
   height: auto;
   min-height: 200px;
-  //background-color: #eaeaea;
   resize: none;
   display: block;
-  width: 70%;
+  width: 80%;
   margin: 0 0 2em 0;
   padding: 1em;
 }
@@ -29,7 +28,7 @@
   }
 
 #lifeListAccordion {
-  width: 70%;
+  width: 80%;
   height: 100%;
 }
 
@@ -52,4 +51,5 @@
   font-size: larger;
   width: 20%;
   height: 50px;
+  white-space: pre-wrap !important;
 }
