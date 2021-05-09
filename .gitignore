@@ -8,6 +8,8 @@
 **/bazel-out
 
 # dependencies
+**/node_modules
+**/UI/node_modules
 UI/node_modules
 
 # profiling files
