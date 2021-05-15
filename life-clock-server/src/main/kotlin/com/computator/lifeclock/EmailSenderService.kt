@@ -1,6 +1,7 @@
 package com.computator.lifeclock
 
 import com.sun.istack.ByteArrayDataSource
+import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.stereotype.Component
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -13,25 +14,17 @@ import javax.mail.internet.MimeMessage
 import javax.mail.internet.MimeMultipart
 
 
-//@Component
-//@ConfigurationProperties(prefix = "spring.mail")
-//@PropertySource("classpath:application.properties")
-//class EmailConfiguration {
-//  lateinit var host: String
-//
-//  //  @Value("\${spring.mail.port}")
-//  lateinit var port: String
-//
-//  //  @Value("\${spring.mail.username}")
-//  lateinit var username: String
-//
-//  //  @Value("\${spring.mail.password}")
-//  lateinit var password: String
-//}
+@Component
+@ConfigurationProperties(prefix = "blog")
+class EmailConfiguration {
+  lateinit var host: String
+  lateinit var port: String
+  lateinit var username: String
+  lateinit var password: String
+}
 
 @Component
-//@EnableConfigurationProperties(EmailConfiguration::class)
-class EmailService {
+class EmailService(val emailConfiguration: EmailConfiguration) {
 
   val sender: String = "info@karolpasierb.pl"
 
@@ -44,7 +37,7 @@ class EmailService {
     //create the sender/recipient addresses
     val iaSender = InternetAddress(sender)
     val iaRecipient = InternetAddress(details.email)
-    val session = setupEmail()
+    val session = setupEmail(emailConfiguration)
     println("Preparing email content")
 
     val outputStream = ByteArrayOutputStream()
@@ -80,9 +73,11 @@ class EmailService {
 
       //send off the email
       Transport.send(mimeMessage)
-      println("sent from " + sender +
-        ", to " + details.email +
-        "; server = " + session.properties["mail.smtp.host"] + ", port = " + session.properties["mail.smtp.port"])
+      println(
+        "sent from " + sender +
+          ", to " + details.email +
+          "; server = " + session.properties["mail.smtp.host"]
+      )
 
     } catch (ex: Exception) {
       ex.printStackTrace()
@@ -91,21 +86,17 @@ class EmailService {
     }
   }
 
-  fun setupEmail(): Session {
-    val smtpHost = "smtp.mailtrap.io" //replace this with a valid host
-    val smtpPort = 2525 //replace this with a valid port
-    val username = "a71b15fd06f187"
-    val password = "1ac225773a4880"
+  fun setupEmail(emailConfig: EmailConfiguration): Session {
 
     val properties = Properties()
     properties["mail.smtp.auth"] = "true"
-    properties["mail.smtp.host"] = smtpHost
+    properties["mail.smtp.host"] = emailConfig.host
     properties["mail.smtp.starttls.enable"] = true
-    properties["mail.smtp.port"] = smtpPort
+    properties["mail.smtp.port"] = emailConfig.port
 
     return Session.getDefaultInstance(properties, object : Authenticator() {
       override fun getPasswordAuthentication(): PasswordAuthentication {
-        return PasswordAuthentication(username, password)
+        return PasswordAuthentication(emailConfig.username, emailConfig.password)
       }
     })
   }

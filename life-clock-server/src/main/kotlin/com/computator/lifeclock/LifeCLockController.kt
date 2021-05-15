@@ -24,16 +24,12 @@ class LifeCLockController {
 
   @CrossOrigin(origins = ["http://localhost:4200"])
   @PostMapping("/send-goals-by-email")
-  fun sendGoalsByEmail(@RequestBody request: LifeClockRequestBody/*, bindingResult: BindingResult*/): ResponseEntity<ResponseModel> {
-//    if(bindingResult.hasErrors()) {
-//    throw ValidationException()
-//    }
+  fun sendGoalsByEmail(@RequestBody request: LifeClockRequestBody): ResponseEntity<ResponseModel> {
 
     val headers = HttpHeaders()
     headers.add("Content-Disposition", "inline;")
 
     try {
-//      emailService.sendMessageWithAttachment(addressee, "Simple Email from Kotlin", emailRequest, "")
       emailService.sendPDFByEmail(request.personalDetails, request.goals)
     } catch (e: Exception) {
       println(e)
@@ -52,10 +48,7 @@ class LifeCLockController {
 
   @CrossOrigin(origins = ["http://localhost:4200"])
   @PostMapping("/export-goals-by-pdf")
-  fun exportGoalsByPDF(@RequestBody request: List<LifeGoal>/*, bindingResult: BindingResult*/): ResponseEntity<*> {
-//    if(bindingResult.hasErrors()) {
-//    throw ValidationException()
-//    }
+  fun exportGoalsByPDF(@RequestBody request: List<LifeGoal>): ResponseEntity<*> {
 
     val headers = HttpHeaders()
     headers.add("Content-Disposition", "inline; filename=" + getPDFFileName(""))
