@@ -45,7 +45,6 @@ import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
     DragDropModule
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: environment.baseHref}
   ],
   bootstrap: [AppComponent]
 })

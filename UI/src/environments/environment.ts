@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   serverEndpoint: 'http://localhost:8080',
-  baseHref: '/app-life-clock/'
 };
 
 /*
